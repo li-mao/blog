@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: MBP13服役中
 subtitle: ''
-description: ''
+description: '给吃饭的家伙搞个网站'
 keywords:
-author: John Doe
-language: en
+author: liimao
+language: zh-Hans
 timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://www.mbp13.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -90,9 +90,17 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: cactus
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: ''
+
+#cactus set
+nav:
+  Home: /
+  About: /2019/11/10/about/
+  Writing: /archives/
+  Projects: http://github.com/li-mao
+  LINK_NAME: URL
