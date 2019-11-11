@@ -96,11 +96,3 @@ theme: cactus
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: ''
-
-#cactus set
-nav:
-  Home: /
-  About: /2019/11/10/about/
-  Writing: /archives/
-  Projects: http://github.com/li-mao
-  LINK_NAME: URL
