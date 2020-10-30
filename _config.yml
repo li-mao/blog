@@ -96,3 +96,10 @@ theme: cactus
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: ''
+
+# 谷歌站点地图生成
+Plugins:
+  - hexo-generator-sitemap
+
+sitemap:
+  path: sitemap.xml
