@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="小鸭子破壳后会主动把第一个看见的动物当妈妈。如果小鸭子发现自己正在别人手里，就把这个人当妈妈。有一个魔法可以让小鸭子在破壳前就知道自己的妈妈。   这个鸭蛋是 js函数。这个小鸭子是 函数里的this。破壳是 js函数的执行。    鸭蛋默默破壳，小鸭子就当全局对象当妈妈，这是 默认绑定。     !!! 严格模式下 小鸭子找不到全局对象。    有人把鸭蛋放在手里破壳，小鸭子当然会认这个人当妈妈">
+    <meta name="description" content="小鸭子破壳后会主动把第一个看见的动物当妈妈。如果小鸭子发现自己正在别人手里，就把这个人当妈妈。有一个魔法可以让小鸭子在破壳前就知道自己的妈妈。   这个鸭蛋是 js函数。这个小鸭子是 函数里的this。破壳是 js函数的执行。   123456789鸭蛋默默破壳，小鸭子就当全局对象当妈妈，这是 默认绑定。   !!! 严格模式下 小鸭子找不到全局对象。  有人把鸭蛋放在手里破壳，小鸭子当然会认这个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="鸭蛋和它的妈妈">
 <meta property="og:url" content="http://www.mbp13.com/2020/11/13/%E9%B8%AD%E8%9B%8B%E5%92%8C%E5%AE%83%E7%9A%84%E5%A6%88%E5%A6%88/index.html">
 <meta property="og:site_name" content="MBP13服役中">
-<meta property="og:description" content="小鸭子破壳后会主动把第一个看见的动物当妈妈。如果小鸭子发现自己正在别人手里，就把这个人当妈妈。有一个魔法可以让小鸭子在破壳前就知道自己的妈妈。   这个鸭蛋是 js函数。这个小鸭子是 函数里的this。破壳是 js函数的执行。    鸭蛋默默破壳，小鸭子就当全局对象当妈妈，这是 默认绑定。     !!! 严格模式下 小鸭子找不到全局对象。    有人把鸭蛋放在手里破壳，小鸭子当然会认这个人当妈妈">
+<meta property="og:description" content="小鸭子破壳后会主动把第一个看见的动物当妈妈。如果小鸭子发现自己正在别人手里，就把这个人当妈妈。有一个魔法可以让小鸭子在破壳前就知道自己的妈妈。   这个鸭蛋是 js函数。这个小鸭子是 函数里的this。破壳是 js函数的执行。   123456789鸭蛋默默破壳，小鸭子就当全局对象当妈妈，这是 默认绑定。   !!! 严格模式下 小鸭子找不到全局对象。  有人把鸭蛋放在手里破壳，小鸭子当然会认这个">
 <meta property="og:locale">
 <meta property="article:published_time" content="2020-11-13T03:06:28.000Z">
-<meta property="article:modified_time" content="2020-11-13T03:51:45.916Z">
+<meta property="article:modified_time" content="2020-11-13T03:54:09.308Z">
 <meta property="article:author" content="liimao">
 <meta name="twitter:card" content="summary">
     
@@ -145,18 +145,7 @@
   <div class="content" itemprop="articleBody">
     <p>小鸭子破壳后会主动把第一个看见的动物当妈妈。<br>如果小鸭子发现自己正在别人手里，就把这个人当妈妈。<br>有一个魔法可以让小鸭子在破壳前就知道自己的妈妈。  </p>
 <p>这个鸭蛋是 js函数。<br>这个小鸭子是 函数里的this。<br>破壳是 js函数的执行。  </p>
-<blockquote>
-<p>鸭蛋默默破壳，小鸭子就当全局对象当妈妈，这是 默认绑定。   </p>
-<blockquote>
-<p>!!! 严格模式下 小鸭子找不到全局对象。  </p>
-</blockquote>
-<p>有人把鸭蛋放在手里破壳，小鸭子当然会认这个人当妈妈，相当于 这个函数在 另一个对象里面执行，这是 隐式绑定。  </p>
-<blockquote>
-<p>但当这个人拿了一会鸭蛋，又把鸭蛋放到外面，让它在外面破壳，这仍然是 默认绑定。   </p>
-</blockquote>
-<p>如果有人用 call,apply,bind 这些魔法让小鸭子破壳前就知道自己的妈妈，这是 显示绑定。  </p>
-<p>如果有人用 new 这种魔法让小鸭子破壳前就知道自己的妈妈，这是 new绑定。   </p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">鸭蛋默默破壳，小鸭子就当全局对象当妈妈，这是 默认绑定。   </span><br><span class="line">!!! 严格模式下 小鸭子找不到全局对象。  </span><br><span class="line"></span><br><span class="line">有人把鸭蛋放在手里破壳，小鸭子当然会认这个人当妈妈，相当于 这个函数在 另一个对象里面执行，这是 隐式绑定。  </span><br><span class="line">但当这个人拿了一会鸭蛋，又把鸭蛋放到外面，让它在外面破壳，这仍然是 默认绑定。   </span><br><span class="line"></span><br><span class="line">如果有人用 call,apply,bind 这些魔法让小鸭子破壳前就知道自己的妈妈，这是 显示绑定。  </span><br><span class="line"></span><br><span class="line">如果有人用 new 这种魔法让小鸭子破壳前就知道自己的妈妈，这是 new绑定。 </span><br></pre></td></tr></table></figure>
 
   </div>
 </article>
