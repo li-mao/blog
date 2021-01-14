@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="无处不在的”文件”unix中一切皆文件。 1234567891011121314151617181920212223242526272829pwd 查看当前目录ls  查看当前目录下的文件cd  进入指定目录&#x2F; 根目录. 当前目录简写.. 上级目录简写mkdir 创建目录touch 创建文件ln 创建文件链接,&quot;-s&quot;可以创建目录链接rm 删除目录或文件 mv 移动目录或文件c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bash:为自己编程 --unixer极简生存手册">
+<meta property="og:url" content="http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="MBP13服役中">
+<meta property="og:description" content="无处不在的”文件”unix中一切皆文件。 1234567891011121314151617181920212223242526272829pwd 查看当前目录ls  查看当前目录下的文件cd  进入指定目录&#x2F; 根目录. 当前目录简写.. 上级目录简写mkdir 创建目录touch 创建文件ln 创建文件链接,&quot;-s&quot;可以创建目录链接rm 删除目录或文件 mv 移动目录或文件c">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-01-14T03:56:04.000Z">
+<meta property="article:modified_time" content="2021-01-14T08:34:09.240Z">
+<meta property="article:author" content="liimao">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>bash:为自己编程 --unixer极简生存手册</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2021/01/14/%E6%B7%B7%E6%B2%8C%E6%97%B6%E4%BB%A3%E7%9A%84%E7%BC%96%E8%BE%91%E5%99%A8-ed/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/12/26/%E4%B8%80%E4%B8%B2%E4%B8%B2%E7%9A%84%E7%9A%84/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/&text=bash:为自己编程 --unixer极简生存手册"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/&title=bash:为自己编程 --unixer极简生存手册"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/&is_video=false&description=bash:为自己编程 --unixer极简生存手册"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=bash:为自己编程 --unixer极简生存手册&body=Check out this article: http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/&title=bash:为自己编程 --unixer极简生存手册"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/&title=bash:为自己编程 --unixer极简生存手册"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/&title=bash:为自己编程 --unixer极简生存手册"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/&title=bash:为自己编程 --unixer极简生存手册"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/&name=bash:为自己编程 --unixer极简生存手册&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8%E7%9A%84%E2%80%9D%E6%96%87%E4%BB%B6%E2%80%9D"><span class="toc-number">1.</span> <span class="toc-text">无处不在的”文件”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%9C%E8%BE%93%E5%85%A5%E2%80%9D%E3%80%81%E2%80%9D%E8%BE%93%E5%87%BA%E2%80%9D%E5%92%8C%E2%80%9D%E7%AE%A1%E9%81%93%E2%80%9D"><span class="toc-number">2.</span> <span class="toc-text">“输入”、”输出”和”管道”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shell%E8%AF%AD%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">Shell语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6"><span class="toc-number">3.1.</span> <span class="toc-text">字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">3.2.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD"><span class="toc-number">3.3.</span> <span class="toc-text">判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF"><span class="toc-number">3.4.</span> <span class="toc-text">循环</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E5%AD%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-number">4.</span> <span class="toc-text">文字处理工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#grep-%E5%85%A8%E6%96%87%E6%9F%A5%E6%89%BE"><span class="toc-number">4.1.</span> <span class="toc-text">grep 全文查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sed-%E6%B5%81%E7%BC%96%E8%BE%91%EF%BC%8C%E8%A1%8C%E5%A4%84%E7%90%86"><span class="toc-number">4.2.</span> <span class="toc-text">sed 流编辑，行处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#awk-%E5%85%A8%E9%9D%A2%E7%9A%84%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86"><span class="toc-number">4.3.</span> <span class="toc-text">awk 全面的文本处理</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        bash:为自己编程 --unixer极简生存手册
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">MBP13服役中</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-01-14T03:56:04.000Z" itemprop="datePublished">2021-01-14</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="无处不在的”文件”"><a href="#无处不在的”文件”" class="headerlink" title="无处不在的”文件”"></a>无处不在的”文件”</h2><p>unix中一切皆文件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">pwd 查看当前目录</span><br><span class="line">ls  查看当前目录下的文件</span><br><span class="line">cd  进入指定目录</span><br><span class="line"></span><br><span class="line">/ 根目录</span><br><span class="line">. 当前目录简写</span><br><span class="line">.. 上级目录简写</span><br><span class="line"></span><br><span class="line">mkdir 创建目录</span><br><span class="line">touch 创建文件</span><br><span class="line">ln 创建文件链接,&quot;-s&quot;可以创建目录链接</span><br><span class="line">rm 删除目录或文件 </span><br><span class="line">mv 移动目录或文件</span><br><span class="line">cp 复制目录或文件</span><br><span class="line"></span><br><span class="line">tree 查看目录内的结构,&quot;-L 2&quot;控制查看深度</span><br><span class="line">du 查看目录下的各文件目录磁盘占用,&quot;-d1&quot;控制查看深度</span><br><span class="line"></span><br><span class="line">cat 查看文件内的文本内容</span><br><span class="line">head 仅看文件开头内容</span><br><span class="line">tail 仅看文件结尾内容,&quot;-F&quot;实时展示最新的尾部内容</span><br><span class="line">less 分页输出文件内容</span><br><span class="line"></span><br><span class="line">find 搜索目录或文件</span><br><span class="line">grep 搜索文件内容</span><br><span class="line">which 查看命令的位置,命令是执行文件,本质也是文件</span><br><span class="line"></span><br><span class="line">vim 编辑文件内容</span><br><span class="line">wc 统计文件的文本数据</span><br></pre></td></tr></table></figure>
+
+<h2 id="“输入”、”输出”和”管道”"><a href="#“输入”、”输出”和”管道”" class="headerlink" title="“输入”、”输出”和”管道”"></a>“输入”、”输出”和”管道”</h2><p>在shell命令行中首先输入的单词全部被当成”命令”来处理,后面的单词被该”命令”内的”$*”获取。<br>如果该”命令”有交互逻辑,”命令”内的”read”会获取输入的数据。<br>“命令”会将产生的数据传给shell,shell通过”标准输出”展示到屏幕上。<br>如果”命令B”想接着处理”命令A”输出的数据,可以用管道来实现 “A|B”。<br>“命令B”能成功接收数据的前提是因为有交互逻辑，除此以外也可以借助xargs命令来实现。  </p>
+<p>shell会识别命令后的 “&lt;”  字符(通常之后还有一个文件名),将文本中的内容当做和命令交互的”标准输入”,只需要命令支持交互。<br>shell会识别命令后的 “&lt;&lt;” 字符(通常之后还有HereDoc),将HereDoc的内容当做和命令交互的”标准输入”,只需要命令支持交互。<br>shell会识别命令后的 “&gt;”  字符(通常之后还有一个文件名),将原本输出到屏幕上的数据重定向到文本中(覆盖文本)。<br>shell会识别命令后的 “&gt;&gt;” 字符(通常之后还有一个文件名),将原本输出到屏幕上的数据重定向到文本中(追加文本)。</p>
+<p>大致原型:<br>“命令A”<br>“命令A” &lt; “文本A”<br>“命令A” &gt; “文本C”<br>“命令A” &lt; “文本A” &gt; “文本C”<br>“命令A” | “命令C”<br>“命令A” | “命令C” &gt; “文本C”<br>“命令A” &lt; “文件A” | “命令B” | “tee” “文件B” | “命令C” &gt; “文件C”</p>
+<p>注意: 不存在 “命令A” &lt; “文本A” &gt; “命令C”,因为命令必须在第一位。即 “文件A” &gt; “命令A” 是非法格式。</p>
+<p>测试shell</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> shell脚本 a.sh</span></span><br><span class="line">echo &quot;args: &quot;,$*</span><br><span class="line">while read str;do</span><br><span class="line">  echo &quot;stdin: &quot;,$str</span><br><span class="line">done</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>输出结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;a.sh 111 &lt;&lt;EOF</span><br><span class="line">heredoc&gt; 222</span><br><span class="line">heredoc&gt; 333</span><br><span class="line">heredoc&gt; EOF</span><br><span class="line">args: ,111</span><br><span class="line">stdin: ,222</span><br><span class="line">stdin: ,333</span><br><span class="line"></span><br><span class="line">cat test.txt</span><br><span class="line">One</span><br><span class="line">twO</span><br><span class="line">three</span><br><span class="line"></span><br><span class="line">.&#x2F;a.sh 111 &lt; test.txt</span><br><span class="line">args: ,111</span><br><span class="line">stdin: ,One</span><br><span class="line">stdin: ,twO</span><br><span class="line">stdin: ,three</span><br></pre></td></tr></table></figure>
+
+<h2 id="Shell语法"><a href="#Shell语法" class="headerlink" title="Shell语法"></a>Shell语法</h2><h3 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h3><h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><h3 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h3><h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><h2 id="文字处理工具"><a href="#文字处理工具" class="headerlink" title="文字处理工具"></a>文字处理工具</h2><h3 id="grep-全文查找"><a href="#grep-全文查找" class="headerlink" title="grep 全文查找"></a>grep 全文查找</h3><h3 id="sed-流编辑，行处理"><a href="#sed-流编辑，行处理" class="headerlink" title="sed 流编辑，行处理"></a>sed 流编辑，行处理</h3><h3 id="awk-全面的文本处理"><a href="#awk-全面的文本处理" class="headerlink" title="awk 全面的文本处理"></a>awk 全面的文本处理</h3>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8%E7%9A%84%E2%80%9D%E6%96%87%E4%BB%B6%E2%80%9D"><span class="toc-number">1.</span> <span class="toc-text">无处不在的”文件”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%9C%E8%BE%93%E5%85%A5%E2%80%9D%E3%80%81%E2%80%9D%E8%BE%93%E5%87%BA%E2%80%9D%E5%92%8C%E2%80%9D%E7%AE%A1%E9%81%93%E2%80%9D"><span class="toc-number">2.</span> <span class="toc-text">“输入”、”输出”和”管道”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shell%E8%AF%AD%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">Shell语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6"><span class="toc-number">3.1.</span> <span class="toc-text">字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">3.2.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD"><span class="toc-number">3.3.</span> <span class="toc-text">判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF"><span class="toc-number">3.4.</span> <span class="toc-text">循环</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E5%AD%97%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-number">4.</span> <span class="toc-text">文字处理工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#grep-%E5%85%A8%E6%96%87%E6%9F%A5%E6%89%BE"><span class="toc-number">4.1.</span> <span class="toc-text">grep 全文查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sed-%E6%B5%81%E7%BC%96%E8%BE%91%EF%BC%8C%E8%A1%8C%E5%A4%84%E7%90%86"><span class="toc-number">4.2.</span> <span class="toc-text">sed 流编辑，行处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#awk-%E5%85%A8%E9%9D%A2%E7%9A%84%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86"><span class="toc-number">4.3.</span> <span class="toc-text">awk 全面的文本处理</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/&text=bash:为自己编程 --unixer极简生存手册"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/&title=bash:为自己编程 --unixer极简生存手册"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/&is_video=false&description=bash:为自己编程 --unixer极简生存手册"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=bash:为自己编程 --unixer极简生存手册&body=Check out this article: http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/&title=bash:为自己编程 --unixer极简生存手册"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/&title=bash:为自己编程 --unixer极简生存手册"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/&title=bash:为自己编程 --unixer极简生存手册"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/&title=bash:为自己编程 --unixer极简生存手册"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.mbp13.com/2021/01/14/bash-%E4%B8%BA%E8%87%AA%E5%B7%B1%E7%BC%96%E7%A8%8B/&name=bash:为自己编程 --unixer极简生存手册&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2021 liimao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
