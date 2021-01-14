@@ -96,13 +96,13 @@ stdin: ,three
 ## Shell语法
 ### 多重宇宙
 
-set
-env
-export
+set 是独享的
+env 是可以遗传给子shell
+export 将某个set变量提升为export
 
-source
-$(ls)
-./a.sh
+source 本shell执行脚本
+$(ls) 将一组命令以子shell执行
+./a.sh 执行shell脚本
 
 
 ### 字符
@@ -196,11 +196,9 @@ test expression
 -ge 大于或等于
 -le 小于或等于
 ```
-命令间的逻辑关系
 ```text
+命令间的逻辑关系
 逻辑与：&&
-第一个条件为假 第二个条件不用在判断，最总结果已经有
-第一个条件为真，第二个条件必须得判断
 逻辑或：||
 ```
 三、字符串比较
@@ -227,22 +225,7 @@ test expression
 五、if语法   
 if 判断条件 0为真 其他都为假
 ```text
-单分支if语句
-if 判断条件；then
-statement1
-statement2
-.......
-fi
-
-双分支的if语句：
-if 判断条件；then
-statement1
-statement2
-.....
-else
-statement3
-statement4
-fi
+if 判断条件；then statement1;else statement2;fi
 ```
 Note:
 ```text
@@ -258,16 +241,6 @@ Note:
 对于字符串等使用test[ ] or [[ ]] 进行判断
 (())中变量是可以不使用$来引用的
 ```
-
-example：表述数字范围的时候 可以使用if可以是使用case
-```text
-if [ $x -gt 90 -o $x -lt 100 ]
-case $x in
-100)
-9[0-9])
-```
-if [ "X$name" != "x" ]   
-这个语句的意思是如果$name为空，那么X=X成立折执行下面的结果；
 
 写脚本的时候很多时候需要用到回传命令，$?如果上一个命令执行成功，回传值为0，否则为1~255之间的任何一个
 ```text
@@ -303,9 +276,40 @@ if grep -q "rm" fn.sh && [ $a -lt 100 ];then
 9、命令||命令
 if grep -q "rm" fn.sh || [ $a -lt 100 ];then
 ```
-
-
 ## 文字处理工具
-### grep 全文查找   
+### grep 全文查找  
+```text
+-e 更强的扩展
+-i 忽略大小写
+-v 取反
+```
 ### sed 流编辑，行处理  
-### awk 全面的文本处理  
+```text
+-i 更新源文件
+-n 参数后只显示处理过的行
+
+sed -i 's/1/2/g' a.txt
+
+s 替换指定字符
+a 在当前行下面插入文本。
+i 在当前行上面插入文本。
+c 把选定的行改为新的文本。
+d 删除，删除选择的行。
+r 将一个独立文件的数据插入到当前数据流的指定位置。 sed '3r from.txt' to.txt
+w 命令用来将文本中指定行的内容写入文件中。 sed '1,2w to.txt' from.txt
+```
+### awk 处理字段,全面的文本处理  
+```text
+awk 'BEGIN{ FS = "," }{print $2,$1,$3}' a.txt
+```
+```text
+FS 字段分隔符
+OFS 字段输出分隔符
+RS 行分隔符
+ORS 行输出分隔符
+```
+### 其他工具
+```text
+cut 字符切片
+tr 字符替换
+```
