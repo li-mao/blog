@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="意图 选项 代码 备注    起始代码  BEGIN{}    结尾代码  END{}    起始变量 -S           行处理      行输入 -l $&#x2F;    行输出 -0 $\    行替换 -p while(&lt;&gt;){print}    行匹配 -n while(&lt;&gt;)    行增删  $.          字段处理      字段输入 -F spl">
+    <meta name="description" content="意图 选项 同义代码 备注    起始代码  BEGIN{} 循环时，仅第一次执行。当仅初始化变量时，同 -s 选项。   结尾代码  END{}   或  }{ 循环时，仅结束才执行。   起始变量 -s  perl的-s选项允许解析--之后的-xxx&#x3D;yyy格式的开关选项。         行处理   将 分隔后的行 放进数组 $_ 中   行输入分隔符 -l $&#x2F; 未启用选项时，默认值">
 <meta property="og:type" content="article">
 <meta property="og:title" content="单行命令perl的技巧">
 <meta property="og:url" content="http://www.mbp13.com/2021/01/20/%E5%8D%95%E8%A1%8C%E5%91%BD%E4%BB%A4perl%E7%9A%84%E6%8A%80%E5%B7%A7/index.html">
 <meta property="og:site_name" content="MBP13服役中">
-<meta property="og:description" content="意图 选项 代码 备注    起始代码  BEGIN{}    结尾代码  END{}    起始变量 -S           行处理      行输入 -l $&#x2F;    行输出 -0 $\    行替换 -p while(&lt;&gt;){print}    行匹配 -n while(&lt;&gt;)    行增删  $.          字段处理      字段输入 -F spl">
+<meta property="og:description" content="意图 选项 同义代码 备注    起始代码  BEGIN{} 循环时，仅第一次执行。当仅初始化变量时，同 -s 选项。   结尾代码  END{}   或  }{ 循环时，仅结束才执行。   起始变量 -s  perl的-s选项允许解析--之后的-xxx&#x3D;yyy格式的开关选项。         行处理   将 分隔后的行 放进数组 $_ 中   行输入分隔符 -l $&#x2F; 未启用选项时，默认值">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-01-20T09:42:25.000Z">
-<meta property="article:modified_time" content="2021-01-20T10:06:44.726Z">
+<meta property="article:modified_time" content="2021-01-21T03:48:09.502Z">
 <meta property="article:author" content="liimao">
 <meta name="twitter:card" content="summary">
     
@@ -148,7 +148,7 @@
 <tr>
 <th>意图</th>
 <th>选项</th>
-<th>代码</th>
+<th>同义代码</th>
 <th>备注</th>
 </tr>
 </thead>
@@ -156,19 +156,19 @@
 <td>起始代码</td>
 <td></td>
 <td>BEGIN{}</td>
-<td></td>
+<td>循环时，仅第一次执行。当仅初始化变量时，同 <code>-s</code> 选项。</td>
 </tr>
 <tr>
 <td>结尾代码</td>
 <td></td>
-<td>END{}</td>
-<td></td>
+<td>END{}   或  }{</td>
+<td>循环时，仅结束才执行。</td>
 </tr>
 <tr>
 <td>起始变量</td>
-<td>-S</td>
+<td>-s</td>
 <td></td>
-<td></td>
+<td>perl的-s选项允许解析<code>--</code>之后的<code>-xxx=yyy</code>格式的开关选项。</td>
 </tr>
 <tr>
 <td></td>
@@ -180,37 +180,37 @@
 <td>行处理</td>
 <td></td>
 <td></td>
-<td></td>
+<td>将 <code>分隔后的行</code> 放进数组 <code>$_</code> 中</td>
 </tr>
 <tr>
-<td>行输入</td>
+<td>行输入分隔符</td>
 <td>-l</td>
 <td>$/</td>
-<td></td>
+<td>未启用选项时，默认值是 <code>\n</code> 。启用选项时如果没有给定任何选项参数，则与 <code>行输入分隔符</code> 同值。</td>
 </tr>
 <tr>
-<td>行输出</td>
+<td>行输出分隔符</td>
 <td>-0</td>
 <td>$\</td>
-<td></td>
+<td>未启用选项时，默认值是 <code>\n</code> 。启用选项时如果没有给定任何选项参数，则表示设置为<code>null</code>，即多行拼成一行。</td>
 </tr>
 <tr>
 <td>行替换</td>
 <td>-p</td>
 <td>while(&lt;&gt;){print}</td>
-<td></td>
+<td>全部输出</td>
 </tr>
 <tr>
 <td>行匹配</td>
 <td>-n</td>
 <td>while(&lt;&gt;)</td>
-<td></td>
+<td>可选输出</td>
 </tr>
 <tr>
 <td>行增删</td>
 <td></td>
 <td>$.</td>
-<td></td>
+<td>全局变量，存储当前行号</td>
 </tr>
 <tr>
 <td></td>
@@ -219,27 +219,33 @@
 <td></td>
 </tr>
 <tr>
-<td>字段处理</td>
+<td>启用字段分隔</td>
+<td>-a</td>
 <td></td>
-<td></td>
-<td></td>
+<td>默认不启用。启用后，将 <code>分隔后的字段</code> 放进数组 <code>@F</code> 中</td>
 </tr>
 <tr>
-<td>字段输入</td>
+<td>字段输入分隔符</td>
 <td>-F</td>
 <td>split  / /,$_</td>
 <td></td>
 </tr>
 <tr>
-<td>字段输出</td>
+<td>字段输出分隔符</td>
 <td></td>
-<td>$,      $&quot;</td>
+<td>$”</td>
+<td>变量指定print/say输出 <code>双引号</code> 包围时的列表/数组时的元素分隔符，默认值为空格。</td>
+</tr>
+<tr>
+<td>字段输出分隔符</td>
 <td></td>
+<td>$,</td>
+<td>变量指定print/say输出 <code>无双引号</code> 包围的列表/数组时的元素分隔符，默认值为undef，也就是元素之间紧紧相连。</td>
 </tr>
 <tr>
 <td>字段处理</td>
 <td></td>
-<td>@F</td>
+<td>$F[i]</td>
 <td></td>
 </tr>
 </tbody></table>
