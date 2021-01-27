@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.mbp13.com/2021/01/27/%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6AND%E6%B0%B4%E6%9E%AA/</loc>
+    
+    <lastmod>2021-01-27</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.mbp13.com/2021/01/20/%E5%8D%95%E8%A1%8C%E5%91%BD%E4%BB%A4perl%E7%9A%84%E6%8A%80%E5%B7%A7/</loc>
     
     <lastmod>2021-01-21</lastmod>
@@ -102,7 +109,7 @@
 
   <url>
     <loc>http://www.mbp13.com/</loc>
-    <lastmod>2021-01-21</lastmod>
+    <lastmod>2021-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

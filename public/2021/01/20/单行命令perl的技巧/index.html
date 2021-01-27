@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="意图 选项 同义代码 备注    起始代码  BEGIN{} 循环时，仅第一次执行。当仅初始化变量时，同 -s 选项。   结尾代码  END{}   或  }{ 循环时，仅结束才执行。   起始变量 -s  perl的-s选项允许解析--之后的-xxx&#x3D;yyy格式的开关选项。         行处理   将 分隔后的行 放进数组 $_ 中   行输入分隔符 -l $&#x2F; 未启用选项时，默认值">
+    <meta name="description" content="意图 选项 同义代码 备注    起始代码  BEGIN{} 在任何代码执行之前先执行。当仅初始化变量时，同 -s 选项。   结尾代码  END{}   或  }{ 在整个程序执行最后时候执行。   起始变量 -s  perl的-s选项允许解析--之后的-xxx&#x3D;yyy格式的开关选项。         行处理   将 分隔后的行 放进数组 $_ 中   行输入分隔符 -l $&#x2F; 未启用选项">
 <meta property="og:type" content="article">
 <meta property="og:title" content="单行命令perl的技巧">
 <meta property="og:url" content="http://www.mbp13.com/2021/01/20/%E5%8D%95%E8%A1%8C%E5%91%BD%E4%BB%A4perl%E7%9A%84%E6%8A%80%E5%B7%A7/index.html">
 <meta property="og:site_name" content="MBP13服役中">
-<meta property="og:description" content="意图 选项 同义代码 备注    起始代码  BEGIN{} 循环时，仅第一次执行。当仅初始化变量时，同 -s 选项。   结尾代码  END{}   或  }{ 循环时，仅结束才执行。   起始变量 -s  perl的-s选项允许解析--之后的-xxx&#x3D;yyy格式的开关选项。         行处理   将 分隔后的行 放进数组 $_ 中   行输入分隔符 -l $&#x2F; 未启用选项时，默认值">
+<meta property="og:description" content="意图 选项 同义代码 备注    起始代码  BEGIN{} 在任何代码执行之前先执行。当仅初始化变量时，同 -s 选项。   结尾代码  END{}   或  }{ 在整个程序执行最后时候执行。   起始变量 -s  perl的-s选项允许解析--之后的-xxx&#x3D;yyy格式的开关选项。         行处理   将 分隔后的行 放进数组 $_ 中   行输入分隔符 -l $&#x2F; 未启用选项">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-01-20T09:42:25.000Z">
-<meta property="article:modified_time" content="2021-01-21T04:03:57.799Z">
+<meta property="article:modified_time" content="2021-01-21T06:04:43.966Z">
 <meta property="article:author" content="liimao">
 <meta name="twitter:card" content="summary">
     
@@ -75,6 +75,8 @@
     <br/>
     <span id="actions">
       <ul>
+        
+        <li><a class="icon" href="/2021/01/27/%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6AND%E6%B0%B4%E6%9E%AA/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" href="/2021/01/14/%E6%B7%B7%E6%B2%8C%E6%97%B6%E4%BB%A3%E7%9A%84%E7%BC%96%E8%BE%91%E5%99%A8-ed/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -156,13 +158,13 @@
 <td>起始代码</td>
 <td></td>
 <td>BEGIN{}</td>
-<td>循环时，仅第一次执行。当仅初始化变量时，同 <code>-s</code> 选项。</td>
+<td>在任何代码执行之前先执行。当仅初始化变量时，同 <code>-s</code> 选项。</td>
 </tr>
 <tr>
 <td>结尾代码</td>
 <td></td>
 <td>END{}   或  }{</td>
-<td>循环时，仅结束才执行。</td>
+<td>在整个程序执行最后时候执行。</td>
 </tr>
 <tr>
 <td>起始变量</td>
@@ -192,7 +194,7 @@
 <td>行输出分隔符</td>
 <td>-0</td>
 <td>$\</td>
-<td>未启用选项时，默认值是 <code>\n</code> 。启用选项时如果没有给定任何选项参数，则表示设置为<code>null</code>，即多行拼成一行。</td>
+<td>默认值是  <code> null</code> ，即多行拼成一行。</td>
 </tr>
 <tr>
 <td>行替换</td>
@@ -247,6 +249,48 @@
 <td></td>
 <td>$F[i]</td>
 <td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>保存修改</td>
+<td>-i</td>
+<td></td>
+<td>i.bak 将 原文件xxx 备份为 xxx.bak</td>
+</tr>
+<tr>
+<td>重复符号</td>
+<td></td>
+<td>x</td>
+<td>字母 <code>X</code> 的小写</td>
+</tr>
+<tr>
+<td>转成数值</td>
+<td></td>
+<td>scalar() 或 ~~</td>
+<td></td>
+</tr>
+<tr>
+<td>匹配真</td>
+<td></td>
+<td>=~</td>
+<td></td>
+</tr>
+<tr>
+<td>匹配假</td>
+<td></td>
+<td>!~</td>
+<td></td>
+</tr>
+<tr>
+<td>数组最大下标</td>
+<td></td>
+<td>$#array</td>
+<td>数组@array的最后一个元素的下标值</td>
 </tr>
 </tbody></table>
 <h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点:"></a>注意点:</h3><p>-p 选项的注意点</p>
