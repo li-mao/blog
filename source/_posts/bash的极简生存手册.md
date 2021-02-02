@@ -304,10 +304,12 @@ if grep -q "rm" fn.sh || [ $a -lt 100 ];then
 -i #忽略大小写
 -v #取反
 ```
-### sed 流编辑，行处理  
+### sed 流编辑，行处理 
+linux系统默认都是`GUN sed`,但MacOS自带的是UNIX原版的`sed`,这两个会有差异,最大不同在于`-i`选项   
+MacOS下直接下载`gsed`使用。`brew install gnu-sed`
 ```shell
--i 更新源文件
--n 参数后只显示处理过的行
+-i #更新源文件
+-n #参数后只显示处理过的行
 
 sed -i 's/1/2/g' a.txt
 
