@@ -35,7 +35,7 @@ ed    行编辑器
 sed   流编辑器,它的装机率极高
 ```
 文本处理的骚操作
-```text
+```shell
 less    分页输出文件内容
 wc      统计文件的文本数据
 
@@ -70,7 +70,7 @@ shell会识别命令后的 ">"  字符(通常之后还有一个文件名),将原
 shell会识别命令后的 ">>" 字符(通常之后还有一个文件名),将原本输出到屏幕上的数据重定向到文本中(追加文本)。
 ```
 大致原型:
-```text
+```shell
 "cmdA"
 "cmdA" < "fileA"
 "cmdA" > "fileC"
@@ -92,7 +92,7 @@ while read str;do
 done
 ```
 输出结果
-```
+```shell
 ./a.sh 111 <<EOF
 heredoc> 222
 heredoc> 333
@@ -115,7 +115,7 @@ stdin: ,three
 
 ## Shell语法
 ### 多重宇宙
-```text
+```shell
 set     是独享的
 env     是可以遗传给子shell
 export  将某个set变量提升为export
@@ -125,7 +125,7 @@ $(ls)       子shell执行一组命令,用子shell的环境变量
 ./a.sh      子shell执行shell脚本,用子shell的环境变量
 ```
 ### 字符
-```
+```shell
 # 是去掉 左边（键盘上#在 $ 的左边）
 % 是去掉 右边（键盘上% 在$ 的右边）
 单一符号是最小匹配; 两个符号是最大匹配
@@ -140,7 +140,7 @@ $(ls)       子shell执行一组命令,用子shell的环境变量
 % echo ${var%%1*}
 000
 ```
-```
+```shell
 ${var:N:N }
 //提取变量字符串的一段：
 
@@ -148,7 +148,7 @@ ${var:N:N }
 % ${var:0:3}：提取最左边的 3 个字节：000
 ${file:3:3}：提取第 3 个字节右边的连续3个字节：111
 ```
-```
+```shell
 ${var/a/b}    ${var//a/b}
 //对变量值里的字符串作替换：
 
@@ -156,12 +156,12 @@ ${var/1/3}：将第一个1 替换为3 : 000311222
 ${var//1/3}：将全部1 替换为3 : 000333222
 ```
 ### 数组和循环
-```
+```shell
 for i in a b c d;do echo $i;done
 
 while true;do echo $i;done
 ```
-```
+```shell
 arr=(1 2) //创建新数组
 arr2=({1..2}) //自动生成数组
 arr1=$(ls)  //利用其他命令生成数组
@@ -174,7 +174,7 @@ ${#arr[@]}   // 获取长度
 ${arr_name[@]:1:2} //切片
 merge_array=( ${a[@] ${b[@]} ... ) //合并数组
 ```
-```
+```shell
 % arr=(1 2 3)
 % for i in ${arr[@]};do echo $i;done
 1
@@ -267,7 +267,7 @@ Note:
 非0为假
 ```
 条件测试的写法：
-```text
+```shell
 1、  执行一个命令的结果
 if grep -q "rm" fs.sh;then
 
