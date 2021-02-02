@@ -70,15 +70,15 @@ shell会识别命令后的 ">>" 字符(通常之后还有一个文件名),将原
 ```
 大致原型:
 ```text
-"命令A"
-"命令A" < "文本A"
-"命令A" > "文本C"
-"命令A" < "文本A" > "文本C"
-"命令A" | "命令C"
-"命令A" | "命令C" > "文本C"
-"命令A" < "文件A" | "命令B" | "tee" "文件B" | "命令C" > "文件C"
+"cmdA"
+"cmdA" < "fileA"
+"cmdA" > "fileC"
+"cmdA" < "fileA" > "fileC"
+"cmdA" | "cmdC"
+"cmdA" | "cmdC" > "fileC"
+"cmdA" < "fileA" | "cmdB" | "tee" "fileB" | "cmdC" > "fileC"
 ```
-注意: 不存在 "命令A" < "文本A" > "命令C",因为命令必须在第一位。即 "文件A" > "命令A" 是非法格式。
+注意: 不存在 "cmdA" < "fileA" > "cmdC",因为cmd必须在第一位。即 "fileA" > "cmdA" 是非法格式。
 
 测试shell
 ```shell
