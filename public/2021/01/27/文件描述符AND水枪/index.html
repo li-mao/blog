@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Shell 是一门宏语言。它辅助我们调用其他命令。我们要时时刻刻记住，是Shell在启动执行命令，命令启动时看到的环境是被Shell修改了的。比如：cat .logcat会输出工作目录下所有”.log”结尾的文件内容，因为Shell启动命令时把 “.log”替换了。   那么我们写文件重定向时它做了什么呢？首先我们看看重定向的写法:   cmd0 0&lt; list.txt     # 标准输入">
+    <meta name="description" content="Shell 类似宏语言。它辅助我们调用其他命令。我们要时时刻刻记住，是Shell在启动执行命令，命令启动时看到的环境是被Shell修改了的。比如：cat .logcat会输出工作目录下所有”.log”结尾的文件内容，因为Shell启动命令时把 “.log”替换了。   那么我们写文件重定向时它做了什么呢？首先我们看看重定向的写法:   cmd0 0&lt; list.txt     # 标准输入c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件描述符AND水枪">
 <meta property="og:url" content="http://www.mbp13.com/2021/01/27/%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6AND%E6%B0%B4%E6%9E%AA/index.html">
 <meta property="og:site_name" content="MBP13服役中">
-<meta property="og:description" content="Shell 是一门宏语言。它辅助我们调用其他命令。我们要时时刻刻记住，是Shell在启动执行命令，命令启动时看到的环境是被Shell修改了的。比如：cat .logcat会输出工作目录下所有”.log”结尾的文件内容，因为Shell启动命令时把 “.log”替换了。   那么我们写文件重定向时它做了什么呢？首先我们看看重定向的写法:   cmd0 0&lt; list.txt     # 标准输入">
+<meta property="og:description" content="Shell 类似宏语言。它辅助我们调用其他命令。我们要时时刻刻记住，是Shell在启动执行命令，命令启动时看到的环境是被Shell修改了的。比如：cat .logcat会输出工作目录下所有”.log”结尾的文件内容，因为Shell启动命令时把 “.log”替换了。   那么我们写文件重定向时它做了什么呢？首先我们看看重定向的写法:   cmd0 0&lt; list.txt     # 标准输入c">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-01-27T08:58:40.000Z">
-<meta property="article:modified_time" content="2021-01-27T10:16:11.585Z">
+<meta property="article:modified_time" content="2021-02-02T03:46:28.337Z">
 <meta property="article:author" content="liimao">
 <meta name="twitter:card" content="summary">
     
@@ -145,7 +145,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>Shell 是一门宏语言。它辅助我们调用其他命令。我们要时时刻刻记住，是Shell在启动执行命令，命令启动时看到的环境是被Shell修改了的。<br>比如：<br>cat <em>.log<br>cat会输出工作目录下所有”.log”结尾的文件内容，因为Shell启动命令时把 “</em>.log”替换了。  </p>
+    <p>Shell 类似宏语言。它辅助我们调用其他命令。我们要时时刻刻记住，是Shell在启动执行命令，命令启动时看到的环境是被Shell修改了的。<br>比如：<br>cat <em>.log<br>cat会输出工作目录下所有”.log”结尾的文件内容，因为Shell启动命令时把 “</em>.log”替换了。  </p>
 <p>那么我们写文件重定向时它做了什么呢？<br>首先我们看看重定向的写法:  </p>
 <p>cmd0 0&lt; list.txt     # 标准输入<br>cmd0 &lt; list.txt      # 标准输入(简写)  </p>
 <p>cmd1 1&gt; data.log     # 标准输出<br>cmd1 &gt; data.log      # 标准输出(简写)  </p>
@@ -154,7 +154,10 @@
 <p>标准输入0是单向，向内的。数据传输到命令cmd0自身。<br>标准输出1和标准错误2是单向，向外的。<br>其他文件描述符都是双向的。   </p>
 <p>cmd0 如果用到了标准输入，它等来的不是键盘输入的数据，而是文件传入的数据。<br>cmd1 如果用到了标准输出，它以为把数据输出到屏幕上，其实去了文件中。  </p>
 <p>把文件描述符当成水枪。<br>把左边的命令和右边的”文件”当成水池。   </p>
-<p>cmd file1<br>cmd &lt; file2<br>file1被cmd打开，默认给它一个新的文件描述符，012已经被占用了，所以会有文件描述符3表示打开的file1。<br>file2被Shell重定向到0，即用0来表示打开的file2。</p>
+<p>文件描述符是进程私有的，它指向的”文件”其实是”套接字”，<br>真实情况是只有操作系统能打开文件，操作系统掌握着”套接字”，所以”套接字”是共有的。  </p>
+<p>所以文件描述符可以随时修改指向的套接字。<br>例如 2&gt;&amp;1，即是将2号文件描述符重新指向1号文件描述符当时指向的套接字。<br>可以比喻成 2号水枪去1号水枪放水的池子里放水了。</p>
+<p>cmd file1<br>cmd &lt; file2<br>file1被cmd打开，默认给它一个新的文件描述符，012已经被占用了，所以会有文件描述符3表示打开的file1。<br>file2被Shell重定向到0，即用0来表示打开的file2。而cmd在等待标准输入0的输入数据。</p>
+<p>cmd &gt;file3 2&gt;&amp;<br>1号文件描述符指向file3，2号文件描述符跟着也指向1号文件描述符指向的file3。故1号2号文件描述符都指向了同一个文件。<br>cmd 2&gt;&amp; &gt;file4<br>2号文件描述符跟着1号文件描述符指向的文件，而1号描述符转而指向file4，故1号2号文件描述符分别指向了两个文件。</p>
 <p><a target="_blank" rel="noopener" href="https://www.junmajinlong.com/shell/fd_duplicate/">https://www.junmajinlong.com/shell/fd_duplicate/</a></p>
 
   </div>
