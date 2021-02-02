@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Unix操作系统的作者Ken Thompson于1971年8月发布ed的第一个版本，是Unix操作系统三个最基础的组件。哪三个组件？编译器、ed和shell。 打开文件后，默认进入的是”命令模式”命令模式下的导航命令 1234直接输入行号并回车，跳转到对应行，并回显对应行的文字（不带行号）。输入回车，会跳转到下一行，并回显对应行的文字（不带行号）。输入 . ，会重复显示当前行的文字（不带行号）。输">
+    <meta name="description" content="Unix操作系统的作者Ken Thompson于1971年8月发布ed的第一个版本，是Unix操作系统三个最基础的组件。哪三个组件？编译器、ed和shell。 打开文件后，默认进入的是”命令模式”，编辑文件时进入”编辑模式”。命令模式下的导航命令 1234直接输入行号并回车，跳转到对应行，并回显对应行的文字（不带行号）。输入回车，会跳转到下一行，并回显对应行的文字（不带行号）。输入 . ，会重复显">
 <meta property="og:type" content="article">
 <meta property="og:title" content="混沌时代的编辑器: ed">
 <meta property="og:url" content="http://www.mbp13.com/2021/01/14/%E6%B7%B7%E6%B2%8C%E6%97%B6%E4%BB%A3%E7%9A%84%E7%BC%96%E8%BE%91%E5%99%A8-ed/index.html">
 <meta property="og:site_name" content="MBP13服役中">
-<meta property="og:description" content="Unix操作系统的作者Ken Thompson于1971年8月发布ed的第一个版本，是Unix操作系统三个最基础的组件。哪三个组件？编译器、ed和shell。 打开文件后，默认进入的是”命令模式”命令模式下的导航命令 1234直接输入行号并回车，跳转到对应行，并回显对应行的文字（不带行号）。输入回车，会跳转到下一行，并回显对应行的文字（不带行号）。输入 . ，会重复显示当前行的文字（不带行号）。输">
+<meta property="og:description" content="Unix操作系统的作者Ken Thompson于1971年8月发布ed的第一个版本，是Unix操作系统三个最基础的组件。哪三个组件？编译器、ed和shell。 打开文件后，默认进入的是”命令模式”，编辑文件时进入”编辑模式”。命令模式下的导航命令 1234直接输入行号并回车，跳转到对应行，并回显对应行的文字（不带行号）。输入回车，会跳转到下一行，并回显对应行的文字（不带行号）。输入 . ，会重复显">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-01-14T04:06:04.000Z">
-<meta property="article:modified_time" content="2021-02-02T05:43:57.657Z">
+<meta property="article:modified_time" content="2021-02-02T05:45:52.760Z">
 <meta property="article:author" content="liimao">
 <meta name="twitter:card" content="summary">
     
@@ -146,7 +146,7 @@
 
   <div class="content" itemprop="articleBody">
     <p>Unix操作系统的作者Ken Thompson于1971年8月发布ed的第一个版本，是Unix操作系统三个最基础的组件。<br>哪三个组件？编译器、ed和shell。</p>
-<p>打开文件后，默认进入的是”命令模式”<br>命令模式下的导航命令</p>
+<p>打开文件后，默认进入的是”命令模式”，编辑文件时进入”编辑模式”。<br>命令模式下的导航命令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">直接输入行号并回车，跳转到对应行，并回显对应行的文字（不带行号）。</span><br><span class="line">输入回车，会跳转到下一行，并回显对应行的文字（不带行号）。</span><br><span class="line">输入 . ，会重复显示当前行的文字（不带行号）。</span><br><span class="line">输入 n，会回显当前行的文字（带行号）。</span><br></pre></td></tr></table></figure>
 <p>切换至输入模式的命令如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a，在当前行的下一行开始插入文字；</span><br><span class="line">i，在当前行的上一行开始插入文字；</span><br><span class="line">c，抹除当前行的所有文字，重新输入。</span><br></pre></td></tr></table></figure>
