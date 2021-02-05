@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="新读SQLSQL必知必会（第4版）https:&#x2F;&#x2F;www.ituring.com.cn&#x2F;book&#x2F;1102 SQL查询：从入门到实践（第４版）https:&#x2F;&#x2F;www.ituring.com.cn&#x2F;book&#x2F;2628 Python写给程序员的Python教程https:&#x2F;&#x2F;www.epubit.com&#x2F;bookDetails?id&#x3D;UB7209b099f1c00 Python编程：从入门到实践htt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不可能的读书计划">
+<meta property="og:url" content="http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/index.html">
+<meta property="og:site_name" content="MBP13服役中">
+<meta property="og:description" content="新读SQLSQL必知必会（第4版）https:&#x2F;&#x2F;www.ituring.com.cn&#x2F;book&#x2F;1102 SQL查询：从入门到实践（第４版）https:&#x2F;&#x2F;www.ituring.com.cn&#x2F;book&#x2F;2628 Python写给程序员的Python教程https:&#x2F;&#x2F;www.epubit.com&#x2F;bookDetails?id&#x3D;UB7209b099f1c00 Python编程：从入门到实践htt">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-02-05T06:55:58.000Z">
+<meta property="article:modified_time" content="2021-02-05T07:57:03.254Z">
+<meta property="article:author" content="liimao">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>不可能的读书计划</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2021/02/02/IP%E7%9A%84%E4%B8%80%E4%BA%9B%E8%B5%84%E6%96%99/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/&text=不可能的读书计划"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/&title=不可能的读书计划"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/&is_video=false&description=不可能的读书计划"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=不可能的读书计划&body=Check out this article: http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/&title=不可能的读书计划"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/&title=不可能的读书计划"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/&title=不可能的读书计划"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/&title=不可能的读书计划"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/&name=不可能的读书计划&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E8%AF%BB"><span class="toc-number">1.</span> <span class="toc-text">新读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL"><span class="toc-number">1.0.1.</span> <span class="toc-text">SQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Python"><span class="toc-number">1.0.2.</span> <span class="toc-text">Python</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.0.3.</span> <span class="toc-text">操作系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">1.0.4.</span> <span class="toc-text">其他</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E4%B9%A0"><span class="toc-number">2.</span> <span class="toc-text">复习</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JAVA"><span class="toc-number">2.0.1.</span> <span class="toc-text">JAVA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ruby"><span class="toc-number">2.0.2.</span> <span class="toc-text">Ruby</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JS"><span class="toc-number">2.0.3.</span> <span class="toc-text">JS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-1"><span class="toc-number">2.0.4.</span> <span class="toc-text">操作系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-number">2.0.5.</span> <span class="toc-text">网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8"><span class="toc-number">2.0.6.</span> <span class="toc-text">编译器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96-1"><span class="toc-number">2.0.7.</span> <span class="toc-text">其他</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        不可能的读书计划
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">MBP13服役中</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-02-05T06:55:58.000Z" itemprop="datePublished">2021-02-05</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="新读"><a href="#新读" class="headerlink" title="新读"></a>新读</h2><h4 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h4><p>SQL必知必会（第4版）<br><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1102">https://www.ituring.com.cn/book/1102</a></p>
+<p>SQL查询：从入门到实践（第４版）<br><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/2628">https://www.ituring.com.cn/book/2628</a></p>
+<h4 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h4><p>写给程序员的Python教程<br><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=UB7209b099f1c00">https://www.epubit.com/bookDetails?id=UB7209b099f1c00</a></p>
+<p>Python编程：从入门到实践<br><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1861">https://www.ituring.com.cn/book/1861</a></p>
+<p>流畅的Python<br><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1564">https://www.ituring.com.cn/book/1564</a></p>
+<h4 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h4><p>操作系统真象还原<br><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=N12685">https://www.epubit.com/bookDetails?id=N12685</a></p>
+<p>现代操作系统：原理与实现</p>
+<p>UNIX操作系统设计<br><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=N11908">https://www.epubit.com/bookDetails?id=N11908</a></p>
+<p>Perl语言入门 第7版</p>
+<p>Perl语言编程思想</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>C++语言的设计和演化<br><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=UB7227cc46b5b87">https://www.epubit.com/bookDetails?id=UB7227cc46b5b87</a></p>
+<p>Ruby程序员修炼之道（第2版）<br><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=N10718">https://www.epubit.com/bookDetails?id=N10718</a></p>
+<p>精通Rust 第2版<br><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=UB72639731c8b8e">https://www.epubit.com/bookDetails?id=UB72639731c8b8e</a></p>
+<p>代码精进之路 从码农到工匠<br><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=UB6c9665253b5f4">https://www.epubit.com/bookDetails?id=UB6c9665253b5f4</a></p>
+<p>重构 第二版<br><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=N42830">https://www.epubit.com/bookDetails?id=N42830</a></p>
+<p>算法 第四版<br><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/875">https://www.ituring.com.cn/book/875</a></p>
+<p>自制编译器<br><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1308">https://www.ituring.com.cn/book/1308</a></p>
+<p>深入浅出Excel VBA</p>
+<h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><h4 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h4><p>深入理解JAVA虚拟机</p>
+<p>深入理解JVM字节码</p>
+<p>垃圾回收的算法与实现<br><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1460">https://www.ituring.com.cn/book/1460</a></p>
+<h4 id="Ruby"><a href="#Ruby" class="headerlink" title="Ruby"></a>Ruby</h4><p>Ruby基础教程（第5版）<br><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1843">https://www.ituring.com.cn/book/1843</a></p>
+<p>Ruby元编程</p>
+<p>Ruby原理剖析</p>
+<h4 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h4><p>JS高级程序设计 第四版<br><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/2472">https://www.ituring.com.cn/book/2472</a></p>
+<p>JS语言精粹</p>
+<p>你不知道的JavaScript<br><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1488">https://www.ituring.com.cn/book/1488</a></p>
+<p>深入浅出Node.js<br><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1290">https://www.ituring.com.cn/book/1290</a></p>
+<h4 id="操作系统-1"><a href="#操作系统-1" class="headerlink" title="操作系统"></a>操作系统</h4><p>Unix内核源码剖析<br><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1165">https://www.ituring.com.cn/book/1165</a></p>
+<p>UNIX/Linux/OS X中的Shell编程（第4版）</p>
+<p>计算的本质：深入剖析程序和计算机<br><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1098">https://www.ituring.com.cn/book/1098</a></p>
+<p>编码: 隐匿在计算机软硬件背后的语言</p>
+<h4 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h4><p>TCP/IP网络编程</p>
+<p>图解HTTP<br><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1229">https://www.ituring.com.cn/book/1229</a></p>
+<h4 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h4><p>精通正则表达式</p>
+<p>antlr4权威指南</p>
+<p>编程语言实现模式</p>
+<p>自己动手实现Lua</p>
+<h4 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h4><p>七周七并发模型<br><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1649">https://www.ituring.com.cn/book/1649</a></p>
+<p>SQL 经典实例<br><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1691">https://www.ituring.com.cn/book/1691</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E8%AF%BB"><span class="toc-number">1.</span> <span class="toc-text">新读</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL"><span class="toc-number">1.0.1.</span> <span class="toc-text">SQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Python"><span class="toc-number">1.0.2.</span> <span class="toc-text">Python</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.0.3.</span> <span class="toc-text">操作系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">1.0.4.</span> <span class="toc-text">其他</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E4%B9%A0"><span class="toc-number">2.</span> <span class="toc-text">复习</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JAVA"><span class="toc-number">2.0.1.</span> <span class="toc-text">JAVA</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ruby"><span class="toc-number">2.0.2.</span> <span class="toc-text">Ruby</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JS"><span class="toc-number">2.0.3.</span> <span class="toc-text">JS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-1"><span class="toc-number">2.0.4.</span> <span class="toc-text">操作系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-number">2.0.5.</span> <span class="toc-text">网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8"><span class="toc-number">2.0.6.</span> <span class="toc-text">编译器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96-1"><span class="toc-number">2.0.7.</span> <span class="toc-text">其他</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/&text=不可能的读书计划"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/&title=不可能的读书计划"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/&is_video=false&description=不可能的读书计划"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=不可能的读书计划&body=Check out this article: http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/&title=不可能的读书计划"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/&title=不可能的读书计划"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/&title=不可能的读书计划"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/&title=不可能的读书计划"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://www.mbp13.com/2021/02/05/2021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/&name=不可能的读书计划&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2021 liimao
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
