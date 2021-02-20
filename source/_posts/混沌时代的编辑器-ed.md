@@ -1,7 +1,7 @@
 ---
 title: '混沌时代的编辑器: ed'
 date: 2021-01-14 12:06:04
-tags:
+tags: [编辑器,linux]
 ---
 Unix操作系统的作者Ken Thompson于1971年8月发布ed的第一个版本，是Unix操作系统三个最基础的组件。
 哪三个组件？编译器、ed和shell。

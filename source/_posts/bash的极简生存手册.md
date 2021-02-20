@@ -1,7 +1,7 @@
 ---
 title: 'bash的极简生存手册'
 date: 2021-01-14 11:56:04
-tags:
+tags: [bash,linux]
 ---
 
 ## 无处不在的"文件"

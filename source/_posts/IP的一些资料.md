@@ -1,7 +1,7 @@
 ---
 title: IP的一些资料
 date: 2021-02-02 10:23:44
-tags:
+tags: [ip]
 ---
 ### 中国的IPv4数量  
 http://www.cac.gov.cn/wxb_pdf/0228043.pdf 的第5页，"截至 2018 年 12 月，我国 IPv4 地址数量为 33892 万个。"
