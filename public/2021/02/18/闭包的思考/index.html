@@ -68,7 +68,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">349</span>
+            <span class="post-count">324</span>
         </span>
     </span>
 
@@ -90,13 +90,13 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>闭包虽然一直会写，但我并不知道用在什么地方。<br>在 阮一峰 介绍闭包的博客 <a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html">https://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html</a> 下面，有一个评论点醒了我。</p>
+  <p>闭包虽然一直会写，但我并不知道用在什么地方。<br>在 阮一峰 <a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html">介绍闭包的博客</a> 下面，有一个评论点醒了我。</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">迷途小书童 说：</span><br><span class="line"></span><br><span class="line">类是有行为的数据，闭包是有数据的行为。</span><br><span class="line"></span><br><span class="line">2009年8月31日 10:26 | # | 引用</span><br></pre></td></tr></table></figure>
 <p><code>生成闭包的函数</code>可以理解成<code>类</code>，返回的<code>闭包变量</code>其实是函数式编程中的<code>对象</code>。<br>一般的<code>函数</code>其实是<code>无状态</code>的，每次调用完函数，内部的状态都会被丢弃。<br>虽然也可以依靠<code>外部变量</code>保存某些状态，但<code>外部变量</code>并不安全。<br><code>对象</code>中的<code>方法</code>和<code>属性</code>就可以<code>安全的合作</code>。<br>那么除了<code>对象</code>还有其他方法可以<code>安全的合作</code>吗？<br><code>闭包</code>就可以，在纯函数式的语言中，只有<code>闭包</code>能用。</p>
 <p>那么，我们可以在不方便使用<code>对象</code>的地方，改用<code>闭包</code>来使用。</p>
-<p>PS:<br>知乎上也找到了相同的观点<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/19554716">https://www.zhihu.com/question/19554716</a></p>
+<p>PS:<br>知乎上也找到了<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/19554716">相同的观点</a>  </p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kuby 行者 </span><br><span class="line">7 人赞同了该回答</span><br><span class="line">    闭包是穷人的对象,对象是穷人的闭包.</span><br><span class="line">    http://c2.com/cgi/wiki?ClosuresAndObjectsAreEquivalent</span><br><span class="line">发布于 2011-04-22</span><br></pre></td></tr></table></figure>
-<p>这里有中文版的更深入的探讨：<br>《JavaScript 轻量级函数式编程》 第7章: 闭包 vs 对象<br><a target="_blank" rel="noopener" href="https://wizardforcel.gitbooks.io/functional-light-js/content/ch7.html">https://wizardforcel.gitbooks.io/functional-light-js/content/ch7.html</a></p>
+<p>这里有中文版的更深入的探讨：<br>《JavaScript 轻量级函数式编程》 <a target="_blank" rel="noopener" href="https://wizardforcel.gitbooks.io/functional-light-js/content/ch7.html">第7章: 闭包 vs 对象</a></p>
  
       <!-- reward -->
       
