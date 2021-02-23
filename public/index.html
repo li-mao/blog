@@ -56,6 +56,55 @@
     
     
     <article
+  id="post-推粪球"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/02/23/%E6%8E%A8%E7%B2%AA%E7%90%83/"
+    >推粪球</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/02/23/%E6%8E%A8%E7%B2%AA%E7%90%83/" class="article-date">
+  <time datetime="2021-02-23T02:06:27.000Z" itemprop="datePublished">2021-02-23</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><code>插入排序</code>可以理解成屎壳郎<code>推粪球</code>。</p>
+<p>一个从小到大排序的有序数据集Arr，当成<code>小山坡</code>。<br>待插入的数据n，当成<code>粪球</code>。<br>比较n和Arr里面元素的大小如同<code>推粪球</code>。<br>遇到Arr里面<code>比较小</code>的数据就继续往上推。<br>遇到Arr里面<code>大于等于</code>的数据就停在前面。   </p>
+<p>但这里有个问题，这个数据集Arr，无论是它是数组实现的，还是单向链表实现的，最终插入的动作都太难实现了。</p>
+<p>为了方便插入，通常都是反向操作：从后向前比较，遇到第一个<code>小于等于</code>的元素就停在他后面。<br>如果Arr是数组实现的，从后向前比较时，大的元素已经后移了。<br>如果Arr是单向链表实现的，从后向前比较时，可以直接拿到后面的指针。   </p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-质数之想破头"
   class="article article-type-post"
   itemscope
@@ -130,8 +179,8 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h3 id="数据结构名称辨析"><a href="#数据结构名称辨析" class="headerlink" title="数据结构名称辨析"></a>数据结构名称辨析</h3><p>默认<code>组织</code> 方式有 <code>数组</code>，<code>链表</code>  </p>
-<p>默认<code>操作</code>方式  有 <code>数组</code>，<code>链表</code><br>基本<code>操作</code>方式  有 <code>队列</code>，<code>栈</code>，等等<br>复合<code>操作</code>方式  有 <code>二叉树</code>，<code>堆</code>，<code>图</code>，等等  </p>
+  <h3 id="数据结构名称辨析"><a href="#数据结构名称辨析" class="headerlink" title="数据结构名称辨析"></a>数据结构名称辨析</h3><p>真实<code>组织</code>方式  有 <code>数组</code>，<code>链表</code>  </p>
+<p>基本<code>操作</code>方式  有 <code>队列</code>，<code>栈</code>，等等<br>复合<code>操作</code>方式  有 <code>二叉树</code>，<code>堆</code>，<code>图</code>，等等  </p>
  
       <!-- reward -->
       
@@ -586,203 +635,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-单行命令perl的技巧"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/01/20/%E5%8D%95%E8%A1%8C%E5%91%BD%E4%BB%A4perl%E7%9A%84%E6%8A%80%E5%B7%A7/"
-    >单行命令perl的技巧</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/01/20/%E5%8D%95%E8%A1%8C%E5%91%BD%E4%BB%A4perl%E7%9A%84%E6%8A%80%E5%B7%A7/" class="article-date">
-  <time datetime="2021-01-20T09:42:25.000Z" itemprop="datePublished">2021-01-20</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <table>
-<thead>
-<tr>
-<th>意图</th>
-<th>选项</th>
-<th>同义代码</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>起始代码</td>
-<td></td>
-<td>BEGIN{}</td>
-<td>在任何代码执行之前先执行。当仅初始化变量时，同 <code>-s</code> 选项。</td>
-</tr>
-<tr>
-<td>结尾代码</td>
-<td></td>
-<td>END{}   或  }{</td>
-<td>在整个程序执行最后时候执行。</td>
-</tr>
-<tr>
-<td>起始变量</td>
-<td>-s</td>
-<td></td>
-<td>perl的-s选项允许解析<code>--</code>之后的<code>-xxx=yyy</code>格式的开关选项。</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>行处理</td>
-<td></td>
-<td></td>
-<td>将 <code>分隔后的行</code> 放进数组 <code>$_</code> 中</td>
-</tr>
-<tr>
-<td>行输入分隔符</td>
-<td>-l</td>
-<td>$/</td>
-<td>未启用选项时，默认值是 <code>\n</code> 。启用选项时如果没有给定任何选项参数，则与 <code>行输入分隔符</code> 同值。</td>
-</tr>
-<tr>
-<td>行输出分隔符</td>
-<td>-0</td>
-<td>$\</td>
-<td>默认值是  <code> null</code> ，即多行拼成一行。</td>
-</tr>
-<tr>
-<td>行替换</td>
-<td>-p</td>
-<td>while(&lt;&gt;){print}</td>
-<td>强制输出 <code>$_</code></td>
-</tr>
-<tr>
-<td>行匹配</td>
-<td>-n</td>
-<td>while(&lt;&gt;)</td>
-<td>可选输出</td>
-</tr>
-<tr>
-<td>行增删</td>
-<td></td>
-<td>$.</td>
-<td>全局变量，存储当前行号</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>启用字段分隔</td>
-<td>-a</td>
-<td></td>
-<td>默认不启用。启用后，将 <code>分隔后的字段</code> 放进数组 <code>@F</code> 中</td>
-</tr>
-<tr>
-<td>字段输入分隔符</td>
-<td>-F</td>
-<td>split  / /,$_</td>
-<td></td>
-</tr>
-<tr>
-<td>字段输出分隔符</td>
-<td></td>
-<td>$”</td>
-<td>变量指定print/say输出 <code>双引号</code> 包围时的列表/数组时的元素分隔符，默认值为空格。</td>
-</tr>
-<tr>
-<td>字段输出分隔符</td>
-<td></td>
-<td>$,</td>
-<td>变量指定print/say输出 <code>无双引号</code> 包围的列表/数组时的元素分隔符，默认值为undef，也就是元素之间紧紧相连。</td>
-</tr>
-<tr>
-<td>字段处理</td>
-<td></td>
-<td>$F[i]</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>保存修改</td>
-<td>-i</td>
-<td></td>
-<td>i.bak 将 原文件xxx 备份为 xxx.bak</td>
-</tr>
-<tr>
-<td>重复符号</td>
-<td></td>
-<td>x</td>
-<td>字母 <code>X</code> 的小写</td>
-</tr>
-<tr>
-<td>转成数值</td>
-<td></td>
-<td>scalar() 或 ~~</td>
-<td></td>
-</tr>
-<tr>
-<td>匹配真</td>
-<td></td>
-<td>=~</td>
-<td></td>
-</tr>
-<tr>
-<td>匹配假</td>
-<td></td>
-<td>!~</td>
-<td></td>
-</tr>
-<tr>
-<td>数组最大下标</td>
-<td></td>
-<td>$#array</td>
-<td>数组@array的最后一个元素的下标值</td>
-</tr>
-</tbody></table>
-<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点:"></a>注意点:</h3><p>-p 选项的注意点</p>
-<p><code>ls | perl -pe &#39;substr $_,1,2&#39;</code> 仅输出 <code>ls</code> 的数据。<br><code>ls | perl -pe &#39;$_ = substr $_,1,2&#39;</code> 可输出处理过的数据。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/perl/" rel="tag">perl</a></li></ul>
 
     </footer>
   </div>
