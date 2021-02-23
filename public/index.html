@@ -610,20 +610,19 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>Shell 类似宏语言。它辅助我们调用其他命令。我们要时时刻刻记住，是Shell在启动执行命令，命令启动时看到的环境是被Shell修改了的。<br>比如：  </p>
+  <p>Shell<code>辅助</code>我们调用其他命令。我们要时时刻刻记住，是Shell启动了<code>命令</code>，<code>命令</code>被启动时看到的<code>环境</code>是被Shell修改了的。<br>比如：  </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat *.log  </span><br></pre></td></tr></table></figure>
-<p>cat会输出工作目录下所有”.log”结尾的文件内容，因为Shell启动命令时把 “*.log”替换了。  </p>
-<p>那么我们写文件重定向时它做了什么呢？<br>首先我们看看重定向的写法:  </p>
+<p><code>命令cat</code>会输出工作目录下所有”.log”结尾的文件内容，因为Shell启动<code>命令cat</code>前时把 “*.log”替换了。  </p>
+<p>那么我们写<code>文件重定向</code>时Shell做了什么呢？<br>首先我们看看重定向的写法:  </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cmd0 0&lt; list.txt     # 标准输入  </span><br><span class="line">cmd0 &lt; list.txt      # 标准输入(简写)  </span><br><span class="line"></span><br><span class="line">cmd1 1&gt; data.log     # 标准输出  </span><br><span class="line">cmd1 &gt; data.log      # 标准输出(简写)  </span><br><span class="line"></span><br><span class="line">cmd2 2&gt; err.log      # 标准错误输出(其他文件描述符不能简写)   </span><br></pre></td></tr></table></figure>
-<p>Shell会扫描到 “0&lt;”, “&lt;”, “1&gt;”, “&gt;”, “2&gt;” 等带有”&lt;”,”&gt;”的字符串，开始设置文件描述符的重定向，然后启动命令。<br>命令以正常的方式工作，如果用到了被Shell重定向的文件描述符，他也不会察觉到。   </p>
-<p>标准输入0是单向，向内的。数据传输到命令cmd0自身。<br>标准输出1和标准错误2是单向，向外的。<br>其他文件描述符都是双向的。   </p>
-<p>cmd0 如果用到了标准输入，它等来的不是键盘输入的数据，而是文件传入的数据。<br>cmd1 如果用到了标准输出，它以为把数据输出到屏幕上，其实去了文件中。  </p>
-<p>把文件描述符当成水枪。<br>把左边的命令和右边的”文件”当成水池。   </p>
-<p>文件描述符是进程私有的，它指向的”文件”其实是”套接字”，<br>真实情况是只有操作系统能打开文件，操作系统掌握着”套接字”，所以”套接字”是共有的。  </p>
-<p>所以文件描述符可以随时修改指向的套接字。<br>例如 2&gt;&amp;1，即是将2号文件描述符重新指向1号文件描述符当时指向的套接字。<br>可以比喻成 2号水枪去1号水枪放水的池子里放水了。</p>
+<p>Shell会扫描到 <code>0&lt;</code>, <code>&lt;</code>, <code>1&gt;</code>, <code>&gt;</code>, <code>2&gt;</code> 等带有<code>&lt;</code>,<code>&gt;</code>的字符串，开始设置<code>文件描述符</code>的<code>重定向</code>，然后启动<code>命令cmd</code>。<br><code>命令cmd</code>以正常的方式工作，如果用到了被Shell重定向的<code>文件描述符</code>，他也不会察觉到。   </p>
+<p><code>标准输入0</code>是单向，向内的。数据传输到命令cmd0自身。<br><code>标准输出1</code>和<code>标准错误2</code>是单向，向外的。<br>其他文件描述符都是双向的。   </p>
+<p><code>cmd0</code> 如果用到了<code>标准输入</code>，它等来的不是<code>键盘</code>输入的数据，而是<code>文件</code>传入的数据。<br><code>cmd1</code> 如果用到了<code>标准输出</code>，它以为把数据输出到<code>屏幕</code>上，其实去了<code>文件</code>中。  </p>
+<p>把<code>文件描述符</code>当成<code>水枪</code>。<br>把左边的<code>命令cmd</code>和右边的<code>文件file</code>当成水池。   </p>
+<p>文件描述符是进程私有的，它指向的<code>文件</code>其实是<code>套接字</code>，<br>真实情况是只有<code>操作系统</code>能打开文件，操作系统掌握着<code>套接字</code>，所以<code>套接字</code>是共有的。  </p>
+<p>所以<code>文件描述符</code>可以随时修改指向的<code>套接字</code>。<br>例如 <code>2&gt;&amp;1</code>，即是将<code>2号文件描述符</code>重新指向<code>1号文件描述符</code>当时指向的<code>套接字</code>。<br>可以比喻成 <code>2号水枪</code>也去<code>1号水枪</code>放水的<code>池子</code>里放水了。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cmd file1   # file1被cmd打开，默认给它一个新的文件描述符，012已经被占用了，所以会有文件描述符3表示打开的file1。   </span><br><span class="line">cmd &lt; file2 # file2被Shell重定向到0，即用0来表示打开的file2。而cmd在等待标准输入0的输入数据。</span><br><span class="line"></span><br><span class="line">cmd &gt;file3 2&gt;&amp;   # 1号文件描述符指向file3，2号文件描述符跟着也指向1号文件描述符指向的file3。</span><br><span class="line"><span class="meta">#</span><span class="bash"> 故1号2号文件描述符都指向了同一个文件。</span>  </span><br><span class="line">cmd 2&gt;&amp; &gt;file4   #2号文件描述符跟着1号文件描述符指向的文件，而1号描述符转而指向file4。</span><br><span class="line"><span class="meta">#</span><span class="bash"> 故1号2号文件描述符分别指向了两个文件。</span></span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://www.junmajinlong.com/shell/fd_duplicate/">https://www.junmajinlong.com/shell/fd_duplicate/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.junmajinlong.com/shell/fd_duplicate/">其他补充</a></p>
  
       <!-- reward -->
       
