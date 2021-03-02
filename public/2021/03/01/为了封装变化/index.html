@@ -68,7 +68,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">658</span>
+            <span class="post-count">1.1k</span>
         </span>
     </span>
 
@@ -77,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -100,9 +100,14 @@
 <p><code>客户类</code>应对变化：<br><code>客户类</code>应该提前把需要的<code>服务类</code>抽象成通用的父类，比如<code>抽象类</code>、<code>接口interface</code>，这样在接收<code>新对象</code>时就不用修改<code>类型限制</code>。<br>这些<code>类型限制</code>的目的是想保证新对象的<code>方法</code>不变，其实<code>类型限制</code>最好改成<code>接口interface</code>。  </p>
 <p>执行的时候，用客户类实例化一个客户对象，传入实现了同样<code>接口interface</code>的<code>新服务类</code>对象，然后执行这个<code>客户对象</code>的<code>主方法</code>。  </p>
 <p>总结：<br>只需要一个类 —&gt; 客户类 需要 服务类 —&gt; 客户类 需要 实现同样接口的服务类</p>
-<p>适配器模式：<br><code>客户类</code>需要<code>实现适配器interface的服务类</code>，这个类做了适配其他<code>已有的服务类</code>的工作。   </p>
-<p>桥接模式：<br><code>第一服务类</code>存储了<code>实现了某interface的多种第二服务类</code>，方便<code>客户类</code>进行选择。<br><code>客户类</code>知道<code>第一服务类</code>和<code>第二服务类</code>，通过<code>第一服务类</code>得到需要的<code>第二服务类</code>。  </p>
-<p>组合模式：<br><code>实现了某interface的服务类</code>，可能有多个。<br>有一个是<code>大哥A</code>，<code>大哥A</code>通过容器管理弟弟妹妹，弟弟妹妹里也可能有一个<code>大哥Z</code>，<code>大哥Z</code>通过容器也管理一批弟弟妹妹，可以如此循环。<br>客户类需要<code>大哥A</code>。</p>
+<p>适配器模式：<br><code>客户类</code>需要<code>实现适配器interface的服务类</code>，这个类的方法适配了其他<code>已有的服务类</code>的方法，两者方法名不同。<br>与<code>外观模式</code>比，<code>客户类</code>调用的方法不变。</p>
+<p>外观模式：<br><code>一套复杂的子服务类</code>被<code>第一服务类</code>管理，<code>客户类</code>只需知道第一服务类可能解决这个需求就行了。<br>通常是已经存在了<code>一套复杂的子服务类</code>，如何理清它们的关系太困难。就写一个<code>第一服务类</code>来简化<code>客户类</code>的调用。<br>与<code>适配器模式</code>比，<code>客户类</code>调用新方法。</p>
+<p>桥接模式：<br><code>第一服务类</code>存储了<code>实现了某interface的多种第二服务类</code>，方便<code>客户类</code>挑选合适的<code>第二服务类</code>对象。<br><code>客户类</code>知道<code>第一服务类</code>和<code>第二服务类</code>，通过<code>第一服务类</code>得到需要的<code>第二服务类</code>，并直接操作<code>第二服务类</code>。  </p>
+<p>组合模式：<br><code>实现了某interface的服务类</code>，可能有多个。<br>有一个是<code>大哥A</code>，<code>大哥A</code>通过容器管理弟弟妹妹，弟弟妹妹里也可能有一个<code>大哥Z</code>，<code>大哥Z</code>通过容器也管理一批弟弟妹妹，可以如此循环。<br>客户类需要<code>大哥A</code>。   </p>
+<p>装饰模式：<br>和组合模式类似。 但没有嵌套，<code>大哥A</code>会依次执行后面的弟弟妹妹。</p>
+<p>享元模式<br>由于系统中存在太多类似的<code>第一服务类</code>对象，就通过<code>内存共享</code>减少<code>第一服务类</code>对象的内存占用，<br>这些<code>第一服务类</code>把内部通用的属性和方法移到某一个专门的单例<code>享元类</code>，有一个单例工厂，专门生产这些单例。<br><code>客户类</code>只需知道调用<code>第一服务类</code>就行了。<br><code>组合模式</code>就有很多类似的<code>服务类</code>，也可用<code>享元模式</code>来减少内存占用。</p>
+<p>代理模式<br><code>客户类</code>调用已有的<code>实现了某interface的服务类</code>对象的方法时，需要在该方法前后增加一些处理工作。<br>这些新增的工作也可以在<code>客户类</code>内部做的，<br>新写一个<code>实现了同样interface的服务类</code>做了这些新增的处理工作，而接口不变，就把它当<code>第一服务类</code>。</p>
+<p>责任链模式<br>和装饰模式类似。但<code>大哥A</code>会把包含弟弟妹妹的容器交给<code>客户类</code>，让<code>客户类</code>自主控制执行。</p>
  
       <!-- reward -->
       
