@@ -56,6 +56,64 @@
     
     
     <article
+  id="post-为了封装变化"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/01/%E4%B8%BA%E4%BA%86%E5%B0%81%E8%A3%85%E5%8F%98%E5%8C%96/"
+    >为了封装变化</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/01/%E4%B8%BA%E4%BA%86%E5%B0%81%E8%A3%85%E5%8F%98%E5%8C%96/" class="article-date">
+  <time datetime="2021-03-01T09:50:03.000Z" itemprop="datePublished">2021-03-01</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>当我们开始用<code>面向对象</code>的方式去<code>重构</code>一段<code>面向过程</code>的代码时</p>
+<p>最开始：<br><code>重构</code>成<code>一个类</code>，<code>公共变量</code>成为<code>私有属性</code>，<code>公共方法</code>控制<code>主逻辑</code>（<code>主方法</code>），<code>私有方法</code>封装<code>变化</code>（<code>助手方法</code>）。   </p>
+<p>执行的时候，用<code>这个类</code>实例化一个<code>对象</code>，然后执行这个对象的<code>主方法</code>。  </p>
+<p>当<code>助手方法</code>越来越独立：<br>比如，它在调用自己的<code>助手方法</code>，这一套方法有自己的<code>公共属性</code>时，就需要把这一套方法和属性分出来成为<code>新类</code>。<br>最开始的类是<code>客户类</code>，新分出来的是<code>服务类</code>。<br>当<code>客户类</code>需要多个服务时，就会有多个<code>服务类</code>。  </p>
+<p>执行的时候，用<code>客户类</code>实例化一个<code>客户对象</code>，传入它需要的<code>服务类</code>的对象，然后执行这个<code>客户对象</code>的<code>主方法</code>。</p>
+<p><code>服务类</code>应对变化：<br>如果<code>需求</code>变化了，最好是仅修改<code>服务类</code>对象。   </p>
+<p>执行的时候，用客户类实例化一个<code>客户对象</code>，传入<code>新服务类</code>对象，而<code>新服务类</code>包含了绝大部分的变化。  </p>
+<p><code>客户类</code>应对变化：<br><code>客户类</code>应该提前把需要的<code>服务类</code>抽象成通用的父类，比如<code>抽象类</code>、<code>接口interface</code>，这样在接收<code>新对象</code>时就不用修改<code>类型限制</code>。<br>这些<code>类型限制</code>的目的是想保证新对象的<code>方法</code>不变，其实<code>类型限制</code>最好改成<code>接口interface</code>。  </p>
+<p>执行的时候，用客户类实例化一个客户对象，传入实现了同样<code>接口interface</code>的<code>新服务类</code>对象，然后执行这个<code>客户对象</code>的<code>主方法</code>。  </p>
+<p>总结：<br>只需要一个类 —&gt; 客户类 需要 服务类 —&gt; 客户类 需要 实现同样接口的服务类</p>
+<p>适配器模式：<br><code>客户类</code>需要<code>实现适配器interface的服务类</code>，这个类做了适配其他<code>已有的服务类</code>的工作。   </p>
+<p>桥接模式：<br><code>第一服务类</code>存储了<code>实现了某interface的多种第二服务类</code>，方便<code>客户类</code>进行选择。<br><code>客户类</code>知道<code>第一服务类</code>和<code>第二服务类</code>，通过<code>第一服务类</code>得到需要的<code>第二服务类</code>。  </p>
+<p>组合模式：<br><code>实现了某interface的服务类</code>，可能有多个。<br>有一个是<code>大哥A</code>，<code>大哥A</code>通过容器管理弟弟妹妹，弟弟妹妹里也可能有一个<code>大哥Z</code>，<code>大哥Z</code>通过容器也管理一批弟弟妹妹，可以如此循环。<br>客户类需要<code>大哥A</code>。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-高数苦海的救命稻草"
   class="article article-type-post"
   itemscope
@@ -517,95 +575,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/perl/" rel="tag">perl</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-幻想中的2021年读书计划"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/02/05/%E5%B9%BB%E6%83%B3%E4%B8%AD%E7%9A%842021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/"
-    >幻想中的2021年读书计划</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/02/05/%E5%B9%BB%E6%83%B3%E4%B8%AD%E7%9A%842021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/" class="article-date">
-  <time datetime="2021-02-05T06:55:58.000Z" itemprop="datePublished">2021-02-05</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="新读"><a href="#新读" class="headerlink" title="新读"></a>新读</h2><h4 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h4><p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/2628">SQL查询：从入门到实践（第４版）</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1102">SQL必知必会（第4版）</a></p>
-<h4 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h4><p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1861">Python编程：从入门到实践</a></p>
-<p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1564">流畅的Python</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=UB7209b099f1c00">写给程序员的Python教程</a></p>
-<h4 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h4><p>!!! 现代操作系统：原理与实现</p>
-<p>!!! <a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=N11908">UNIX操作系统设计</a></p>
-<p>!!! 深入理解计算机系统</p>
-<p><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=N12685">操作系统真象还原</a></p>
-<h4 id="Perl"><a href="#Perl" class="headerlink" title="Perl"></a>Perl</h4><p>!!! Perl语言入门 第7版</p>
-<p>!!! Perl语言编程思想</p>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>!!! <a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=UB72639731c8b8e">精通Rust 第2版</a></p>
-<p>!!! <a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=N42830">重构 第二版</a></p>
-<p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/875">算法 第四版</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1308">自制编译器</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=UB6c9665253b5f4">代码精进之路 从码农到工匠</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=N10718">Ruby程序员修炼之道（第2版）</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=UB7227cc46b5b87">C++语言的设计和演化</a></p>
-<p>深入浅出Excel VBA</p>
-<h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><h4 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h4><p>!!! 深入理解JAVA虚拟机</p>
-<p>深入理解JVM字节码</p>
-<p><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1460">垃圾回收的算法与实现</a></p>
-<h4 id="Ruby"><a href="#Ruby" class="headerlink" title="Ruby"></a>Ruby</h4><p>!!! Ruby元编程</p>
-<p>!!! Ruby原理剖析</p>
-<p><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1843">Ruby基础教程（第5版）</a></p>
-<h4 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h4><p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/2472">JS高级程序设计 第四版</a></p>
-<p>!!! JS语言精粹</p>
-<p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1488">你不知道的JavaScript</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1290">深入浅出Node.js</a></p>
-<h4 id="操作系统-1"><a href="#操作系统-1" class="headerlink" title="操作系统"></a>操作系统</h4><p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1098">计算的本质：深入剖析程序和计算机</a></p>
-<p>!!! UNIX/Linux/OS X中的Shell编程（第4版）</p>
-<p><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1165">Unix内核源码剖析</a></p>
-<p>编码: 隐匿在计算机软硬件背后的语言</p>
-<p>Unix &amp; Linux大学教程</p>
-<h4 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h4><p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1229">图解HTTP</a></p>
-<p>TCP/IP网络编程</p>
-<h4 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h4><p>!!! antlr4权威指南</p>
-<p>精通正则表达式</p>
-<p>编程语言实现模式</p>
-<p>自己动手实现Lua</p>
-<h4 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h4><p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1649">七周七并发模型</a></p>
-<p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1691">SQL 经典实例</a></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B9%B1%E8%AF%AD/" rel="tag">乱语</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6/" rel="tag">读书</a></li></ul>
 
     </footer>
   </div>
