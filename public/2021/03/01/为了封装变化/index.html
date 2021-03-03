@@ -68,7 +68,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">2.3k</span>
+            <span class="post-count">2.5k</span>
         </span>
     </span>
 
@@ -77,7 +77,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">7 min</span>
+            <span class="post-count">8 min</span>
         </span>
     </span>
 </div>
@@ -109,16 +109,17 @@
 <p>5.桥接模式：（一个多变的新对象）<br><code>组合优于继承</code>的经典例子<br><code>实现了某interface的第二服务类</code>的各方法独立且多变，每种变化都写单独一个类的话，类的数量会爆炸，<br>写一套<code>包含单独方法的interface</code>，<code>第二服务类</code>的方法去引用这些单独实现的方法。<br><code>第一服务类</code>生成了<code>实现了某interface的第二服务类</code>的对象，并返回给<code>客户类</code>，<code>客户类</code>直接操作<code>第二服务类</code>。  </p>
 <p>6.组合模式：（一群同类对象，嵌套）<br><code>实现了某interface的服务类</code>，可能有多个。<br>有一个是<code>大哥A</code>，<code>大哥A</code>通过容器管理弟弟妹妹，弟弟妹妹里也可能有一个<code>大哥AA</code>，<code>大哥AA</code>通过容器也管理一批弟弟妹妹，可以如此循环。<br>客户类需要<code>大哥A</code>。   </p>
 <p>7.享元模式：（一群同类对象，少内存占用）<br>由于系统中存在太多类似的<code>第一服务类</code>对象，就通过<code>内存共享</code>减少<code>第一服务类</code>对象的内存占用，<br>这些<code>第一服务类</code>把内部通用的属性和方法移到某一个专门的单例<code>享元类</code>，有一个单例工厂，专门生产这些单例。<br><code>客户类</code>只需知道调用<code>第一服务类</code>就行了。<br><code>组合模式</code>就有很多类似的<code>服务类</code>，可用<code>享元模式</code>来减少内存占用。</p>
-<h3 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h3><p>1.责任链模式：<br>和<code>组合模式</code>类似，但没有嵌套，且<code>大哥A</code>会把包含弟弟妹妹的容器交给<code>客户类</code>，让<code>客户类</code>自主控制执行。  </p>
-<p>2.命令模式：<br><code>组合优于继承</code>的另一个经典例子。<br><code>客户类</code>往<code>实现了命令interface的第一服务类</code>A对象传入<code>实现了接收interface的第二服务类</code>B对象（可能多个<code>B对象</code>），<br><code>A对象</code>会调用<code>B对象</code>的方法（控制调用过程，可能调用多个方法，<code>B对象</code>是真正的服务对象）。</p>
-<p>3.迭代器模式：<br><code>客户类</code>会调用<code>实现了某interface</code>的<code>容器服务类A</code>，并迭代该容器内的元素。<br>通常<code>容器服务器A</code>会自带可以迭代自身的<code>迭代服务类B</code>，这样的话<code>客户类</code>调用<code>A类对象</code>的迭代方法就够了。<br><code>客户类</code>也可以指定<code>实现了某interface</code>的<code>迭代服务器B</code>给<code>容器服务类A</code>。</p>
-<p>4.中介者模式：<br><code>组件interface</code>和<code>中介interface</code>会双向调用。<br>有一个<code>中介实现类</code>，管理多个<code>组件实现类</code>。<br><code>中介类</code>和<code>主件类</code>之间有耦合，<code>组件类</code>之间没有耦合。<br><code>中介类</code>和<code>客户类</code>的沟通是双向的，和<code>组件类</code>沟通也是双向的。</p>
-<p>5.备忘录模式<br><code>客户类</code>调用<code>第一服务类</code>。<br><code>第一服务类</code>会在每次属性发生变化时，把<code>要发生变化的属性</code>保存到新的<code>备忘类</code>对象，<br>并把该<code>备忘类</code>对象，传给<code>备忘容器类</code>对象保存（备忘类和备忘容器类 的关系 是<code>组合模式</code>里的哥哥管理弟弟妹妹）。<br><code>备忘容器类</code>对象内部是按<code>栈</code>的方式保存传来的<code>对象</code>，方便<code>第一服务类</code>对象随时取回。</p>
-<p>6.观察者模式：<br><code>客户类</code>调用<code>发布者类</code>对象。<br><code>发布者类</code>内部有<code>消息通知interface</code>容器，会按<code>主题</code>分成几个容器。<br>实现了<code>消息通知interface</code>类的对象，会向<code>发布者类</code>对象注册想订阅的<code>主题</code>，<br><code>发布者类</code>对象将这些<code>订阅者</code>保存到不同<code>主题</code>的容器内。<br><code>发布者类</code>对象会把<code>客户类</code>对象传来的消息按不同的主题依次通知到各个<code>订阅者</code>。<br>当某个<code>订阅者</code>通过<code>客户类</code>对象传递同一<code>主题</code>的消息时，会有死循环风险。</p>
-<p>7.状态模式：<br><code>上下文类</code>保存了<code>Status interface</code>的多个对象，并设置其中一个对象为内部的 当前 <code>Status类</code>对象变量，<br>这些<code>对象</code>可以通过<code>上下文类</code>对象的<code>change方法</code>，来改变<code>上下文类</code>对象内部的 当前 <code>Status类</code>对象变量。<br>是的，这些 <code>Status类</code>对象 彼此都知道对方的存在。<br><code>客户类</code>通过<code>上下文类</code>间接调用其中的当前<code>Status类</code>对象变量，<br><code>Status类</code>会通知<code>上下文类</code>要切换别的<code>Status类</code>，而<code>客户类</code>并不知道。   </p>
-<p>8.策略模式：<br>和<code>状态模式</code>不同的是<code>客户类</code>会通过<code>上下文类</code>主动切换 当前<code>策略类对象</code>，<br>这些 <code>策略类</code>对象 并不知道彼此。</p>
-<p>9.模板方法模式：<br>在普通的继承中，父类留出要重写的方法，保留 如何调用这些方法 的<code>主方法</code>，final。<br>子类接着重写这些方法，<code>客户类</code>调用子类对象的<code>主方法</code>。</p>
-<p>10.访问者模式：<br><code>实现了访问者interface</code>的类作为<code>访问者</code>，被<code>客户类</code>传入<code>数据表对象</code>的<code>欢迎访问方法</code>。<br><code>继承某抽象类</code>的 <code>子类</code> 作为数据表，有<code>欢迎访问方法</code>接收<code>访问者</code>，并主动调用<code>访问者</code>的<code>操作数据方法</code>，来操作该<code>数据表</code>的数据。<br>（数据表对象 被动等待 访问者 ，再把 本对象 传给 访问者）<br><code>客户类对象</code>遍历<code>数据表</code>容器，让每个<code>访问者</code>都去操作<code>数据表</code>的数据。<br><code>数据表类</code>不应该频繁变动<code>属性</code>，因为每次变动，<code>访问者</code>也要跟着修改<code>操作方法</code>。</p>
+<h3 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h3><p>B干的事如下： 自己状态的管理，管理A的状态，传递A的消息，传给A的消息，辅助A处理C，</p>
+<p>1.模板方法模式：（特殊的继承套路）<br>在普通的继承中，父类留出要重写的方法，保留 如何调用这些方法 的<code>主方法</code>，final。<br>子类接着重写这些方法，<code>客户类</code>调用子类对象的<code>主方法</code>。</p>
+<p>2.状态模式：（A控制B，C是B的状态，A不知道）<br><code>上下文类</code>保存了<code>Status interface</code>的多个对象，并设置其中一个对象为内部的 当前 <code>Status类</code>对象变量，<br>这些<code>对象</code>可以通过<code>上下文类</code>对象的<code>change方法</code>，来改变<code>上下文类</code>对象内部的 当前 <code>Status类</code>对象变量。<br>是的，这些 <code>Status类</code>对象 彼此都知道对方的存在。<br><code>客户类</code>通过<code>上下文类</code>间接调用其中的当前<code>Status类</code>对象变量，<br><code>Status类</code>会通知<code>上下文类</code>要切换别的<code>Status类</code>，而<code>客户类</code>并不知道。</p>
+<p>3.策略模式：（A控制B，也控制B的状态C）<br>和<code>状态模式</code>不同的是<code>客户类</code>会通过<code>上下文类</code>主动切换 当前<code>策略类对象</code>，<br>这些 <code>策略类</code>对象 并不知道彼此。</p>
+<p>4.备忘录模式：（A控制B操作<code>A生成的C</code>，B是C的容器）<br><code>客户类</code>调用<code>第一服务类</code>。<br><code>第一服务类</code>会在每次属性发生变化时，把<code>要发生变化的属性</code>保存到新的<code>备忘类</code>对象，<br>并把该<code>备忘类</code>对象，传给<code>备忘容器类</code>对象保存（备忘类和备忘容器类 的关系 是<code>组合模式</code>里的哥哥管理弟弟妹妹）。<br><code>备忘容器类</code>对象内部是按<code>栈</code>的方式保存传来的<code>对象</code>，方便<code>第一服务类</code>对象随时取回。</p>
+<p>5.观察者模式：（A控制B操作C，B是单向传递消息，C是多个对象）<br><code>客户类</code>调用<code>发布者类</code>对象。<br><code>发布者类</code>内部有<code>消息通知interface</code>容器，会按<code>主题</code>分成几个容器。<br>实现了<code>消息通知interface</code>类的对象，会向<code>发布者类</code>对象注册想订阅的<code>主题</code>，<br><code>发布者类</code>对象将这些<code>订阅者</code>保存到不同<code>主题</code>的容器内。<br><code>发布者类</code>对象会把<code>客户类</code>对象传来的消息按不同的主题依次通知到各个<code>订阅者</code>。<br>当某个<code>订阅者</code>通过<code>客户类</code>对象传递同一<code>主题</code>的消息时，会有死循环风险。</p>
+<p>6.中介者模式：（A控制B操作C，B是双向中介，C是多个对象）<br><code>组件interface</code>和<code>中介interface</code>会双向调用。<br>有一个<code>中介实现类</code>，管理多个<code>组件实现类</code>。<br><code>中介类</code>和<code>主件类</code>之间有耦合，<code>组件类</code>之间没有耦合。<br><code>中介类</code>和<code>客户类</code>的沟通是双向的，和<code>组件类</code>沟通也是双向的。</p>
+<p>7.迭代器模式：（A控制B操作C，B是迭代器，C是容器）<br><code>客户类</code>会调用<code>实现了某interface</code>的<code>容器服务类B</code>，并迭代该容器内的元素。<br>通常<code>容器服务器B</code>会自带可以迭代自身的<code>迭代服务类A</code>，这样的话<code>客户类</code>调用<code>B类对象</code>的迭代方法就够了。<br><code>客户类</code>也可以指定<code>实现了某interface</code>的<code>迭代服务器A</code>给<code>容器服务类B</code>。</p>
+<p>8.责任链模式：（A控制B操作C，B是<code>操作对象容器</code>）<br>和<code>组合模式</code>类似，但没有嵌套，且<code>大哥A</code>会把包含弟弟妹妹的容器交给<code>客户类</code>，让<code>客户类</code>自主控制执行，不一定全部都执行。  </p>
+<p>9.命令模式：（A控制B操作C，B是流程控制，C是在干活）<br><code>组合优于继承</code>的另一个经典例子。<br><code>客户类</code>往<code>实现了命令interface的第一服务类</code>B对象传入<code>实现了接收interface的第二服务类</code>C对象（可能多个<code>C对象</code>），<br><code>B对象</code>会调用<code>C对象</code>的方法（控制调用过程，可能调用多个方法，<code>C对象</code>是真正干活的服务对象）。</p>
+<p>10.访问者模式：（A控制B操作C，C是数据表，B是<code>一群操作对象</code>）<br><code>实现了访问者interface</code>的类作为<code>访问者</code>，被<code>客户类</code>传入<code>数据表对象</code>的<code>欢迎访问方法</code>。<br><code>继承某抽象类</code>的 <code>子类</code> 作为数据表，有<code>欢迎访问方法</code>接收<code>访问者</code>，并主动调用<code>访问者</code>的<code>操作数据方法</code>，来操作该<code>数据表</code>的数据。<br>（数据表对象 被动等待 访问者 ，再把 本对象 传给 访问者）<br><code>客户类</code>让每个<code>访问者</code>都去<code>数据表容器类</code>中遍历操作<code>数据表</code>的数据。<br><code>数据表类</code>不应该频繁变动<code>属性</code>，因为每次变动，<code>访问者</code>也要跟着修改<code>操作方法</code>。</p>
  
       <!-- reward -->
       
