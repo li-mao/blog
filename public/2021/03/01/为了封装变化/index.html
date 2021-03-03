@@ -68,7 +68,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">2.2k</span>
+            <span class="post-count">2.3k</span>
         </span>
     </span>
 
@@ -92,7 +92,7 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>当我们开始用<code>面向对象</code>的方式去<code>重构</code>一段<code>面向过程</code>的代码时</p>
+  <h3 id="初级抽象"><a href="#初级抽象" class="headerlink" title="初级抽象"></a>初级抽象</h3><p>当我们开始用<code>面向对象</code>的方式去<code>重构</code>一段<code>面向过程</code>的代码时</p>
 <p>最开始：<br><code>重构</code>成<code>一个类</code>，<code>公共变量</code>成为<code>私有属性</code>，<code>公共方法</code>控制<code>主逻辑</code>（<code>主方法</code>），<code>私有方法</code>封装<code>变化</code>（<code>助手方法</code>）。   </p>
 <p>执行的时候，用<code>这个类</code>实例化一个<code>对象</code>，然后执行这个对象的<code>主方法</code>。  </p>
 <p>当<code>助手方法</code>越来越独立：<br>比如，它在调用自己的<code>助手方法</code>，这一套方法有自己的<code>公共属性</code>时，就需要把这一套方法和属性分出来成为<code>新类</code>。<br>最开始的类是<code>客户类</code>，新分出来的是<code>服务类</code>。<br>当<code>客户类</code>需要多个服务时，就会有多个<code>服务类</code>。  </p>
@@ -102,18 +102,18 @@
 <p><code>客户类</code>应对变化：<br><code>客户类</code>应该提前把需要的<code>服务类</code>抽象成通用的父类，比如<code>抽象类</code>、<code>接口interface</code>，这样在接收<code>新对象</code>时就不用修改<code>类型限制</code>。<br>这些<code>类型限制</code>的目的是想保证新对象的<code>方法</code>不变，其实<code>类型限制</code>最好改成<code>接口interface</code>。  </p>
 <p>执行的时候，用客户类实例化一个客户对象，传入实现了同样<code>接口interface</code>的<code>新服务类</code>对象，然后执行这个<code>客户对象</code>的<code>主方法</code>。  </p>
 <p>总结：<br>只需要一个类 —&gt; 客户类 需要 服务类 —&gt; 客户类 需要 实现同样接口的服务类</p>
-<h3 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h3><p>1.适配器模式：<br><code>客户类</code>需要<code>实现适配器interface的服务类</code>，这个类的方法适配了其他<code>已有的服务类</code>的方法，两者方法名不同。<br>与<code>外观模式</code>比，<code>客户类</code>调用的方法不变。</p>
-<p>2.外观模式：<br><code>一套复杂的子服务类</code>被<code>第一服务类</code>管理，<code>客户类</code>只需知道第一服务类可能解决这个需求就行了。<br>通常是已经存在了<code>一套复杂的子服务类</code>，如何理清它们的关系太困难。就写一个<code>第一服务类</code>来简化<code>客户类</code>的调用。<br>与<code>适配器模式</code>比，<code>客户类</code>调用新方法。  </p>
-<p>3.桥接模式：<br><code>组合优于继承</code>的经典例子<br><code>实现了某interface的第二服务类</code>的各方法独立且多变，每种变化都写单独一个类的话，类的数量会爆炸，<br>写一套<code>包含单独方法的interface</code>，<code>第二服务类</code>的方法去引用这些单独实现的方法。<br><code>第一服务类</code>生成了<code>实现了某interface的第二服务类</code>的对象，并返回给<code>客户类</code>，<code>客户类</code>直接操作<code>第二服务类</code>。  </p>
-<p>4.组合模式：<br><code>实现了某interface的服务类</code>，可能有多个。<br>有一个是<code>大哥A</code>，<code>大哥A</code>通过容器管理弟弟妹妹，弟弟妹妹里也可能有一个<code>大哥AA</code>，<code>大哥AA</code>通过容器也管理一批弟弟妹妹，可以如此循环。<br>客户类需要<code>大哥A</code>。   </p>
-<p>5.装饰模式：<br>和<code>组合模式</code>类似。 但没有嵌套，<code>大哥A</code>会依次执行后面的弟弟妹妹。</p>
-<p>6.享元模式：<br>由于系统中存在太多类似的<code>第一服务类</code>对象，就通过<code>内存共享</code>减少<code>第一服务类</code>对象的内存占用，<br>这些<code>第一服务类</code>把内部通用的属性和方法移到某一个专门的单例<code>享元类</code>，有一个单例工厂，专门生产这些单例。<br><code>客户类</code>只需知道调用<code>第一服务类</code>就行了。<br><code>组合模式</code>就有很多类似的<code>服务类</code>，也可用<code>享元模式</code>来减少内存占用。</p>
-<p>7.代理模式：<br><code>客户类</code>调用已有的<code>实现了某interface的服务类</code>对象的方法时，需要在该方法前后增加一些处理工作。<br>(这些新增的工作也可以在<code>客户类</code>内部做的，但这不符合<code>最小修改</code>，应该只修改是服务类)<br>新写一个<code>实现了同样interface的服务类</code>做了这些新增的处理工作，而接口不变，就把它当<code>第一服务类</code>。   </p>
-<h3 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h3><p>1.责任链模式：<br>和<code>装饰模式</code>类似。但<code>大哥A</code>会把包含弟弟妹妹的容器交给<code>客户类</code>，让<code>客户类</code>自主控制执行。  </p>
+<h3 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h3><p>1.代理模式：（用旧方法名复用旧方法，外部）<br><code>客户类</code>原先调用的<code>实现了某interface的服务类</code>对象的方法，需要在该方法前后增加一些处理工作。<br>(这些新增的工作也可以在<code>客户类</code>内部做的，但这不符合<code>最小修改</code>，应该只修改是服务类)<br>新写一个<code>实现了同样interface的服务类</code>做了这些新增的处理工作，而方法名不变，就把它当<code>第一服务类</code>。</p>
+<p>2.装饰模式：（用旧方法名复用旧方法，内部）<br>和<code>代理模式</code>类似，是<code>客户类</code>内部 主动实例化<code>装饰对象</code>（实例化时传入<code>旧对象</code>），让它成为增强版的<code>旧对象</code>，后续调用<code>装饰对象</code>的<code>旧方法名</code>。<br>在<code>客户类</code>内部实例化是为了<code>按需选择</code>不同的装饰对象</p>
+<p>3.适配器模式：（用新方法名复用旧方法）<br><code>客户类</code>需要<code>实现适配器interface的服务类</code>，这个类的方法适配了其他<code>已有的服务类</code>的方法，两者方法名不同。<br>与<code>外观模式</code>比，<code>客户类</code>调用的方法不变。</p>
+<p>4.外观模式：（用新方法名复用一堆旧方法逻辑）<br><code>一套复杂的子服务类</code>被<code>第一服务类</code>管理，<code>客户类</code>只需知道第一服务类可能解决这个需求就行了。<br>通常是已经存在了<code>一套复杂的子服务类</code>，如何理清它们的关系太困难。就写一个<code>第一服务类</code>来简化<code>客户类</code>的调用。<br>与<code>适配器模式</code>比，<code>客户类</code>调用新方法。</p>
+<p>5.桥接模式：（一个多变的新对象）<br><code>组合优于继承</code>的经典例子<br><code>实现了某interface的第二服务类</code>的各方法独立且多变，每种变化都写单独一个类的话，类的数量会爆炸，<br>写一套<code>包含单独方法的interface</code>，<code>第二服务类</code>的方法去引用这些单独实现的方法。<br><code>第一服务类</code>生成了<code>实现了某interface的第二服务类</code>的对象，并返回给<code>客户类</code>，<code>客户类</code>直接操作<code>第二服务类</code>。  </p>
+<p>6.组合模式：（一群同类对象，嵌套）<br><code>实现了某interface的服务类</code>，可能有多个。<br>有一个是<code>大哥A</code>，<code>大哥A</code>通过容器管理弟弟妹妹，弟弟妹妹里也可能有一个<code>大哥AA</code>，<code>大哥AA</code>通过容器也管理一批弟弟妹妹，可以如此循环。<br>客户类需要<code>大哥A</code>。   </p>
+<p>7.享元模式：（一群同类对象，少内存占用）<br>由于系统中存在太多类似的<code>第一服务类</code>对象，就通过<code>内存共享</code>减少<code>第一服务类</code>对象的内存占用，<br>这些<code>第一服务类</code>把内部通用的属性和方法移到某一个专门的单例<code>享元类</code>，有一个单例工厂，专门生产这些单例。<br><code>客户类</code>只需知道调用<code>第一服务类</code>就行了。<br><code>组合模式</code>就有很多类似的<code>服务类</code>，可用<code>享元模式</code>来减少内存占用。</p>
+<h3 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h3><p>1.责任链模式：<br>和<code>组合模式</code>类似，但没有嵌套，且<code>大哥A</code>会把包含弟弟妹妹的容器交给<code>客户类</code>，让<code>客户类</code>自主控制执行。  </p>
 <p>2.命令模式：<br><code>组合优于继承</code>的另一个经典例子。<br><code>客户类</code>往<code>实现了命令interface的第一服务类</code>A对象传入<code>实现了接收interface的第二服务类</code>B对象（可能多个<code>B对象</code>），<br><code>A对象</code>会调用<code>B对象</code>的方法（控制调用过程，可能调用多个方法，<code>B对象</code>是真正的服务对象）。</p>
-<p>3.迭代器模式：<br><code>客户类</code>会调用<code>实现了某interface</code>的<code>容器服务类A</code>，并迭代该容器的元素。<br>通常<code>容器服务器A</code>会自带可以迭代自身的<code>迭代服务类B</code>，这样的话<code>客户类</code>调用<code>A类对象</code>的迭代方法就够了。<br><code>客户类</code>也可以指定<code>实现了某interface</code>的<code>迭代服务器B</code>给<code>容器服务类A</code>。</p>
-<p>4.中介者模式：<br><code>主件interface</code>和<code>中介interface</code>会互相调用。<br>有一个<code>中介实现类</code>，管理多个<code>主件实现类</code>。<br><code>中介类</code>和<code>主件类</code>之间有耦合，<code>主件类</code>之间没有耦合。<br><code>中介类</code>和<code>客户类</code>的沟通是双向的，和<code>主件类</code>沟通也是双向的。</p>
-<p>5.备忘录模式<br><code>客户类</code>调用<code>第一服务类</code>。<br><code>第一服务类</code>会在每次属性发生变化时，把<code>要发生变化的属性</code>保存到新的<code>备忘类</code>对象，<br>并把该<code>备忘类</code>对象，传给<code>备忘本类</code>对象保存。<br><code>备忘本类</code>对象内部是按<code>栈</code>的方式保存传来的<code>对象</code>，方便<code>第一服务类</code>对象随时取回。</p>
+<p>3.迭代器模式：<br><code>客户类</code>会调用<code>实现了某interface</code>的<code>容器服务类A</code>，并迭代该容器内的元素。<br>通常<code>容器服务器A</code>会自带可以迭代自身的<code>迭代服务类B</code>，这样的话<code>客户类</code>调用<code>A类对象</code>的迭代方法就够了。<br><code>客户类</code>也可以指定<code>实现了某interface</code>的<code>迭代服务器B</code>给<code>容器服务类A</code>。</p>
+<p>4.中介者模式：<br><code>组件interface</code>和<code>中介interface</code>会双向调用。<br>有一个<code>中介实现类</code>，管理多个<code>组件实现类</code>。<br><code>中介类</code>和<code>主件类</code>之间有耦合，<code>组件类</code>之间没有耦合。<br><code>中介类</code>和<code>客户类</code>的沟通是双向的，和<code>组件类</code>沟通也是双向的。</p>
+<p>5.备忘录模式<br><code>客户类</code>调用<code>第一服务类</code>。<br><code>第一服务类</code>会在每次属性发生变化时，把<code>要发生变化的属性</code>保存到新的<code>备忘类</code>对象，<br>并把该<code>备忘类</code>对象，传给<code>备忘容器类</code>对象保存（备忘类和备忘容器类 的关系 是<code>组合模式</code>里的哥哥管理弟弟妹妹）。<br><code>备忘容器类</code>对象内部是按<code>栈</code>的方式保存传来的<code>对象</code>，方便<code>第一服务类</code>对象随时取回。</p>
 <p>6.观察者模式：<br><code>客户类</code>调用<code>发布者类</code>对象。<br><code>发布者类</code>内部有<code>消息通知interface</code>容器，会按<code>主题</code>分成几个容器。<br>实现了<code>消息通知interface</code>类的对象，会向<code>发布者类</code>对象注册想订阅的<code>主题</code>，<br><code>发布者类</code>对象将这些<code>订阅者</code>保存到不同<code>主题</code>的容器内。<br><code>发布者类</code>对象会把<code>客户类</code>对象传来的消息按不同的主题依次通知到各个<code>订阅者</code>。<br>当某个<code>订阅者</code>通过<code>客户类</code>对象传递同一<code>主题</code>的消息时，会有死循环风险。</p>
 <p>7.状态模式：<br><code>上下文类</code>保存了<code>Status interface</code>的多个对象，并设置其中一个对象为内部的 当前 <code>Status类</code>对象变量，<br>这些<code>对象</code>可以通过<code>上下文类</code>对象的<code>change方法</code>，来改变<code>上下文类</code>对象内部的 当前 <code>Status类</code>对象变量。<br>是的，这些 <code>Status类</code>对象 彼此都知道对方的存在。<br><code>客户类</code>通过<code>上下文类</code>间接调用其中的当前<code>Status类</code>对象变量，<br><code>Status类</code>会通知<code>上下文类</code>要切换别的<code>Status类</code>，而<code>客户类</code>并不知道。   </p>
 <p>8.策略模式：<br>和<code>状态模式</code>不同的是<code>客户类</code>会通过<code>上下文类</code>主动切换 当前<code>策略类对象</code>，<br>这些 <code>策略类</code>对象 并不知道彼此。</p>
