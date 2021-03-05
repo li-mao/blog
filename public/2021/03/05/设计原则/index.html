@@ -68,7 +68,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">149</span>
+            <span class="post-count">144</span>
         </span>
     </span>
 
@@ -90,13 +90,12 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>SOLID 原则有：</p>
-<p>单一职责原则<br><code>服务类</code>实现的<code>interface</code>别超过一个。</p>
-<p>开闭原则<br>修改时，要写新的<code>服务类</code>，新<code>服务类</code>也要实现同样的<code>interface</code>。</p>
-<p>里氏替换原则<br>修改后，<code>客户类</code>调用实现同样的<code>interface</code>的新<code>服务类</code>。</p>
-<p>迪米特法则<br>如果发现<code>客户类</code>在和一批<code>服务类</code>说同样的话时，新写一个<code>服务类</code>专门跑腿传话。</p>
+  <p>依赖倒置原则<br>从一开始，<code>客户类</code>就要坚持<code>只调用</code>实现了<code>interface</code>的<code>服务类</code>。</p>
 <p>接口隔离原则<br><code>interface</code>要小要精。</p>
-<p>依赖倒置原则<br>从一开始，<code>客户类</code>就要坚持调用实现了<code>interface</code>的<code>服务类</code>。</p>
+<p>单一职责原则<br><code>服务类</code>实现的<code>interface</code>别超过一个。</p>
+<p>开闭原则<br>修改时，要写新的<code>服务类</code>，新<code>服务类</code>也要实现该<code>interface</code>。</p>
+<p>里氏替换原则<br>修改后，<code>客户类</code>调用同样实现该<code>interface</code>的新<code>服务类</code>。</p>
+<p>迪米特法则<br>如果发现<code>客户类</code>在和一批<code>服务类</code>说同样的话时，新写一个<code>服务类</code>专门跑腿传话。</p>
  
       <!-- reward -->
       
