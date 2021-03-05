@@ -56,6 +56,81 @@
     
     
     <article
+  id="post-perl的语境和默认值"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/02/08/perl%E7%9A%84%E8%AF%AD%E5%A2%83%E5%92%8C%E9%BB%98%E8%AE%A4%E5%80%BC/"
+    >perl的语境和默认值</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/02/08/perl%E7%9A%84%E8%AF%AD%E5%A2%83%E5%92%8C%E9%BB%98%E8%AE%A4%E5%80%BC/" class="article-date">
+  <time datetime="2021-02-08T03:02:38.000Z" itemprop="datePublished">2021-02-08</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h4 id="Modern-Perl"><a href="#Modern-Perl" class="headerlink" title="Modern Perl"></a><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/98173e7af633">Modern Perl</a></h4><h2 id="语境"><a href="#语境" class="headerlink" title="语境"></a>语境</h2><h3 id="空语境，标量语境，列表语境"><a href="#空语境，标量语境，列表语境" class="headerlink" title="空语境，标量语境，列表语境"></a>空语境，标量语境，列表语境</h3><p>当你调用一个函数，并且不使用它的返回值时，你就使用了空语境。例如调用一个叫<code>find_chores()</code> 的函数：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find_chores()；</span><br></pre></td></tr></table></figure>
+<p>如果将返回值赋值给一个标量，这就指定了标量语境，函数将表现为标量语境下的行为：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">my</span> $single_result = find_chores();</span><br></pre></td></tr></table></figure>
+<p>如果将函数的返回值赋值给一个数组、列表，或者在列表中使用，那么函数就处在列表语境中：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">my</span> @all_results = find_chores();</span><br><span class="line"><span class="keyword">my</span> ($single_element, @rest) = find_chores();</span><br></pre></td></tr></table></figure>
+<p>单一元素的列表，还是列表，所以也是列表语境：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">my</span> ($single_element) = find_chores();</span><br></pre></td></tr></table></figure>
+<p>函数在不同的语境下可能产生不同的行为，如果语境不对，结果可能与预期的不一致：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">my</span> %results =(</span><br><span class="line">     <span class="string">cheap_operation =&gt;</span> $cheap_results,</span><br><span class="line">     <span class="string">expensive_operation =&gt;</span> find_chores(),  <span class="comment"># 列表语境下的行为，可能不是你所期望的</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>这时可以使用关键词明确指定为标量语境：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">my</span> %results =</span><br><span class="line">(</span><br><span class="line">     <span class="string">cheap_operation =&gt;</span> $cheap_results,</span><br><span class="line">     <span class="string">expensive_operation =&gt;</span> <span class="keyword">scalar</span> find_chores(),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="操作符语境-数值语境，字符串语境，布尔语境"><a href="#操作符语境-数值语境，字符串语境，布尔语境" class="headerlink" title="操作符语境: 数值语境，字符串语境，布尔语境"></a>操作符语境: 数值语境，字符串语境，布尔语境</h3><p>在前面的例子中我们看到，使用“+”号时，Perl会变量解析为数值，其实就是加号操作符提供了数值语境。</p>
+<p>使用字符串操作符时，就会提供字符串语境。如操作符“eq”：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">say</span> <span class="string">&quot;Catastrophic crypto fail!&quot;</span> <span class="keyword">if</span> $alice eq $bob;</span><br></pre></td></tr></table></figure>
+<p>注意和下面这个的区别，数值操作“==”提供的是数值语境：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">say</span> <span class="string">&quot;Catastrophic crypto fail!&quot;</span> <span class="keyword">if</span> $alice == <span class="string">&#x27;Bob&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>布尔语境，出现在条件语句里面。比如上面的 if语句后面的表达式就是布尔语境。</p>
+<p>在某些罕见的情况下，可能需要更为明确的指明语境：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">my</span> $numeric_x = <span class="number">0</span> + $x;     <span class="comment"># 加 0   强制用数值语境 </span></span><br><span class="line"><span class="keyword">my</span> $stringy_x = <span class="string">&#x27;&#x27;</span> . $x;    <span class="comment"># 加 空串 强制用字符串语境</span></span><br><span class="line"><span class="keyword">my</span> $boolean_x = !!$x;       <span class="comment"># 加 双反 强制用布尔语境</span></span><br></pre></td></tr></table></figure>
+<h2 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h2><h3 id="默认标量标量："><a href="#默认标量标量：" class="headerlink" title="默认标量标量："></a>默认标量标量：</h3><h4 id=""><a href="#" class="headerlink" title="$_"></a><code>$_</code></h4><p>打印类 print，say;<br>标量操作类 chr,ord,lc,length,reverse, 正则等等。</p>
+<h3 id="默认的数组变量"><a href="#默认的数组变量" class="headerlink" title="默认的数组变量:"></a>默认的数组变量:</h3><h4 id="函数内"><a href="#函数内" class="headerlink" title="函数内@_"></a>函数内<code>@_</code></h4><p>在调用函数时，传递的参数就存在默认数组变量 <code>@_</code> 里面。在函数内部，数组操作符默认就是操作这个数组变量<br>下面2段代码是等价的：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">sub</span> <span class="title">foo</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">my</span> $arg = <span class="keyword">shift</span>;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">sub</span> <span class="title">foo_explicit_args</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">my</span> $arg = <span class="keyword">shift</span> @_;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果<code>$_</code>对应的意思是“那个”，那么<code>@_</code>对应的意思就是“那些”。<br>数组变量<code>@_</code>是每个函数内部私有的，不同函数之间互不影响。</p>
+<h4 id="函数外-ARGV"><a href="#函数外-ARGV" class="headerlink" title="函数外@ARGV"></a>函数外<code>@ARGV</code></h4><p>如果在所有函数的外面，默认的数组变量就是<code>@ARGV</code>，里面包含了该程序的命令行参数。</p>
+<p><code>@ARGV</code>有自己的个性。如果你是使用钻石操作符<code>&lt;&gt;</code>读取空的文件句柄，Perl就会自动以<code>@ARGV</code>里面的元素为名字，读取对应的文件。<br>如果<code>@ARGV</code>为空，Perl就从标准输入STDIN里读取。我们可以利用这个特性写个短小精悍的程序，如将输入的字符串逆序输出：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (&lt;&gt;)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">chomp</span>;</span><br><span class="line">    <span class="keyword">say</span> <span class="keyword">scalar</span> <span class="keyword">reverse</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为什么要加上scalar呢？如果在列表语境下，reverse并不默认操作<code>$_</code> 。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/perl/" rel="tag">perl</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-幻想中的2021年读书计划"
   class="article article-type-post"
   itemscope
@@ -763,58 +838,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B9%B1%E8%AF%AD/" rel="tag">乱语</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-逻辑图的思考-2"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/03/11/%E9%80%BB%E8%BE%91%E5%9B%BE%E7%9A%84%E6%80%9D%E8%80%83-2/"
-    >逻辑图的思考-2</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/03/11/%E9%80%BB%E8%BE%91%E5%9B%BE%E7%9A%84%E6%80%9D%E8%80%83-2/" class="article-date">
-  <time datetime="2020-03-11T02:31:10.000Z" itemprop="datePublished">2020-03-11</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="二元逻辑图"><a href="#二元逻辑图" class="headerlink" title="二元逻辑图"></a>二元逻辑图</h2><blockquote>
-<p>第一镜像线<br>第二镜像线</p>
-</blockquote>
-<h3 id="1-符合第一镜像线特性的逻辑图之间可以相互转换"><a href="#1-符合第一镜像线特性的逻辑图之间可以相互转换" class="headerlink" title="1.符合第一镜像线特性的逻辑图之间可以相互转换"></a>1.符合第一镜像线特性的逻辑图之间可以相互转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;(0,0),(0,1)&#125;与, &#123;(0,1),(1,1)&#125;或, &#123;(1,0),(0,0)&#125;或非, &#123;(1,1),(1,0)&#125;与非, </span><br><span class="line">&#123;(0,1),(1,0)&#125;异或, &#123;(1,0),(0,1)&#125;异或非, </span><br><span class="line">&#123;(0,0),(0,0)&#125;常开, &#123;(1,1),(1,1)&#125;常闭</span><br><span class="line">三种转换方式</span><br><span class="line">组合，不相干逻辑图的后置取反，第二镜像线对面逻辑图的前置取反</span><br></pre></td></tr></table></figure>
-<h3 id="2-符合第二镜像线特性的逻辑图之间可以相互转换"><a href="#2-符合第二镜像线特性的逻辑图之间可以相互转换" class="headerlink" title="2.符合第二镜像线特性的逻辑图之间可以相互转换"></a>2.符合第二镜像线特性的逻辑图之间可以相互转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;(1,0),(1,1)&#125;A蕴含B, &#123;(0,1),(0,0)&#125;A蕴含B非， </span><br><span class="line">&#123;(0,0),(1,0)&#125;B蕴含B, &#123;(1,1),(0,1)&#125;B蕴含A非</span><br><span class="line">两种转换方式 </span><br><span class="line">第一镜像线对面逻辑图的AB点互换，不相干逻辑图的后置取反</span><br></pre></td></tr></table></figure>
-<h3 id="3-既不符合第一镜像线特性也不符合第二镜像线特性的逻辑图可以相互转换"><a href="#3-既不符合第一镜像线特性也不符合第二镜像线特性的逻辑图可以相互转换" class="headerlink" title="3.既不符合第一镜像线特性也不符合第二镜像线特性的逻辑图可以相互转换"></a>3.既不符合第一镜像线特性也不符合第二镜像线特性的逻辑图可以相互转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;(1,0),(1,0)&#125; A非, &#123;(0,1),(0,1)&#125; A线性</span><br><span class="line">&#123;(1,1),(0,0)&#125; B非, &#123;(0,0),(1,1)&#125; B线性, </span><br><span class="line">两种转换方式</span><br><span class="line">第一镜像线对面逻辑图的AB点互换，不相干逻辑图的后置取反</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%80%BB%E8%BE%91%E9%97%A8/" rel="tag">逻辑门</a></li></ul>
 
     </footer>
   </div>
