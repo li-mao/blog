@@ -56,6 +56,59 @@
     
     
     <article
+  id="post-纯人肉算力、查对数表、计算器"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/08/%E7%BA%AF%E4%BA%BA%E8%82%89%E7%AE%97%E5%8A%9B%E3%80%81%E6%9F%A5%E5%AF%B9%E6%95%B0%E8%A1%A8%E3%80%81%E8%AE%A1%E7%AE%97%E5%99%A8/"
+    >纯人肉算力、查对数表、电子计算器</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/08/%E7%BA%AF%E4%BA%BA%E8%82%89%E7%AE%97%E5%8A%9B%E3%80%81%E6%9F%A5%E5%AF%B9%E6%95%B0%E8%A1%A8%E3%80%81%E8%AE%A1%E7%AE%97%E5%99%A8/" class="article-date">
+  <time datetime="2021-03-08T06:50:00.000Z" itemprop="datePublished">2021-03-08</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="纯人肉算力"><a href="#纯人肉算力" class="headerlink" title="纯人肉算力"></a>纯人肉算力</h3><p>在没有<code>电子计算器</code>之前，<code>大数</code>的计算是非常繁琐的，<br>比如手算 <code>123456789 * 987654321</code> 是非常痛苦的，<br>如果手算 <code>123456789^987654321</code> 更是需要不眠不休的工作31年零3个月。<br>尤其是天天计算<code>大数</code>的天文学家，他们都是苦行僧。</p>
+<h3 id="查对数表"><a href="#查对数表" class="headerlink" title="查对数表"></a>查对数表</h3><p>后来数学家制作了<code>对数表</code>，可以借助<code>对数表</code>快速获得结果。<br><a target="_blank" rel="noopener" href="https://www.shuxuele.com/algebra/exponents-logarithms.html">对数特性</a></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ln(m*n) = ln(m) + ln(n)	        乘的对数是对数的和</span><br><span class="line"> 	 </span><br><span class="line">ln(m/n) = ln(m) - ln(n)	        除乘的对数是对数的差</span><br><span class="line"> 	 </span><br><span class="line">ln(1/n) = -ln(n)                这是以上&quot;除&quot;特性的结果，因为 ln(1) = 0</span><br><span class="line"> 	 </span><br><span class="line">ln(m^r) = r * ln(m) 	        m的r次幂 的对数 是 r 和 m的对数 的积</span><br></pre></td></tr></table></figure>
+<p>如何使用<code>对数表</code></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">求 123456789 * 987654321 </span><br><span class="line">x   = ln(123456789 * 987654321) = ln(123456789) + ln(987654321)</span><br><span class="line">y   = e^x</span><br><span class="line">则 y 是 123456789 * 987654321 的结果</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">求 123456789^987654321</span><br><span class="line">x   = ln(123456789^987654321)   = 987654321 * ln(123456789)</span><br><span class="line">x1  = ln(123456789)</span><br><span class="line">y   = e^( 987654321 * x1 ) </span><br><span class="line">x2  = ln(987654321 * x1)        = ln(987654321) + ln(x1)   </span><br><span class="line">y   = e^( e^x2 )</span><br><span class="line">则 y 是 123456789^987654321 的结果</span><br></pre></td></tr></table></figure>
+<p>将算式中的 <code>乘</code> <code>除</code> <code>幂</code> 运算逐步转换成更简单的运算，计算就会变成：查<code>对数表</code>，算加减，再查<code>指数表</code>。<br>计算过程中有小数产生，取<code>10位小数</code>可以得到比较准确的结果。   </p>
+<h3 id="电子计算器"><a href="#电子计算器" class="headerlink" title="电子计算器"></a>电子计算器</h3><p>在出现了<code>电子计算器</code>后，不再要查表，也不需要纠结保留多少位小数，瞬间就能得到<code>精度</code>很高的结果。<br>对数表就渐渐没人用了。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-不一样的栈面试题"
   class="article article-type-post"
   itemscope
@@ -517,60 +570,13 @@
 </article>
 
     
-    <article
-  id="post-数据结构之偶感"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/02/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E5%81%B6%E6%84%9F/"
-    >数据结构之偶感</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/02/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E5%81%B6%E6%84%9F/" class="article-date">
-  <time datetime="2021-02-22T07:35:47.000Z" itemprop="datePublished">2021-02-22</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="数据结构名称辨析"><a href="#数据结构名称辨析" class="headerlink" title="数据结构名称辨析"></a>数据结构名称辨析</h3><p>真实<code>组织</code>方式  有 <code>数组</code>，<code>链表</code>  </p>
-<p>基本<code>操作</code>方式  有 <code>队列</code>，<code>栈</code>，等等<br>复合<code>操作</code>方式  有 <code>二叉树</code>，<code>堆</code>，<code>图</code>，等等  </p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
   </nav>
   
 </section>
