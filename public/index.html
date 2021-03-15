@@ -56,6 +56,67 @@
     
     
     <article
+  id="post-布尔数学"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/15/%E5%B8%83%E5%B0%94%E6%95%B0%E5%AD%A6/"
+    >布尔数学</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/15/%E5%B8%83%E5%B0%94%E6%95%B0%E5%AD%A6/" class="article-date">
+  <time datetime="2021-03-15T07:35:22.000Z" itemprop="datePublished">2021-03-15</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><code>真</code> = <code>1</code> ，<code>假</code> = <code>0</code><br><code>与</code> = <code>*</code> ，<code>或</code> = <code>+</code></p>
+<p>p与真 &lt;=&gt; p,<br>p*1 &lt;=&gt; p   </p>
+<p>p或真 &lt;=&gt; 真,<br>p+1 &lt;=&gt; 1   </p>
+<p>p与假 &lt;=&gt; 假,<br>p*0 &lt;=&gt; 0   </p>
+<p>p或假 &lt;=&gt; p,<br>p+0 &lt;=&gt; p   </p>
+<h3 id="幂等"><a href="#幂等" class="headerlink" title="幂等"></a>幂等</h3><p>p与p &lt;=&gt; p,<br>p*p &lt;=&gt; p,  </p>
+<p>p或p &lt;=&gt; p,<br>p+p &lt;=&gt; p,   </p>
+<h3 id="摩根律"><a href="#摩根律" class="headerlink" title="摩根律"></a>摩根律</h3><p>非(p与q) &lt;=&gt; (非p)或(非q),<br>!(p * q) &lt;=&gt; !p + !q   </p>
+<p>非(p或q) &lt;=&gt; (非p)与(非q),<br>!(p + q) &lt;=&gt; !p * !q   </p>
+<h3 id="交换律"><a href="#交换律" class="headerlink" title="交换律"></a>交换律</h3><p>p与q &lt;=&gt; q与p,<br>p<em>q &lt;=&gt; q</em>p,  </p>
+<p>p或q &lt;=&gt; q或p,<br>p+q &lt;=&gt; q+p,</p>
+<h3 id="结合律"><a href="#结合律" class="headerlink" title="结合律"></a>结合律</h3><p>p与(q与r) &lt;=&gt; (p与q)与r,<br>p*(q<em>r) &lt;=&gt; (p</em>q)*r,  </p>
+<p>p或(q或r) &lt;=&gt; (p或q)或r,<br>p+(q+r) &lt;=&gt; (p+q)+r,   </p>
+<h3 id="分配律"><a href="#分配律" class="headerlink" title="分配律"></a>分配律</h3><p>p与(q或r) &lt;=&gt; (p与q)或(p与r),<br>p*(q+r) &lt;=&gt; (p<em>q)+(p</em>r),   </p>
+<h3 id="排中律"><a href="#排中律" class="headerlink" title="排中律"></a>排中律</h3><p>p与(非p) &lt;=&gt; 假,<br>p*(!p) &lt;=&gt; 0   </p>
+<p>p或(非p) &lt;=&gt; 真,<br>p+(!p) &lt;=&gt; 1    </p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-时间和距离"
   class="article article-type-post"
   itemscope
@@ -510,55 +571,6 @@
        
   <p><code>小型排序</code>就三种<code>选择</code>，<code>冒泡</code>，<code>插入</code>。<br>排序过程中分为 UnSortArr 和 SortedArr 两部分。<br>其中：<br><code>选择</code> 在操作 SortedArr 的时间是 O(1) ，在操作 UnSortArr 的时间是 O(n)。<br><code>冒泡</code> 在操作 SortedArr 的时间是 O(1) ，在操作 UnSortArr 的时间是 O(n)，但在 UnSortArr 做了排序交换。<br><code>插入</code> 在操作 SortedArr 的时间是 O(n) ，在操作 UnSortArr 的时间是 O(1)。  </p>
 <p><code>大型排序</code>都是先将大数据分解成小数据，再用<code>小型排序</code>来处理小数据，多数是用<code>插入</code>。<br>因为：<br><code>大型排序</code>可以控制 SortedArr 为最终排序顺序，即时间为 O(1)。<br><code>小型排序</code>用<code>插入</code>来控制 UnSortArr 的时间为 O(1)。  </p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-推粪球"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/02/23/%E6%8E%A8%E7%B2%AA%E7%90%83/"
-    >推粪球</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/02/23/%E6%8E%A8%E7%B2%AA%E7%90%83/" class="article-date">
-  <time datetime="2021-02-23T02:06:27.000Z" itemprop="datePublished">2021-02-23</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p><code>插入排序</code>可以理解成屎壳郎<code>推粪球</code>。</p>
-<p>一个从小到大排序的 有序数据集Arr ，当成<code>小山坡</code>。<br>待插入的 数据n ，当成<code>粪球</code>。<br>比较 n 和 Arr 里面元素的大小如同<code>推粪球</code>。<br>遇到 Arr 里面<code>比较小</code>的数据就继续往上推。<br>遇到 Arr 里面<code>大于等于</code>的数据就停在前面。   </p>
-<p>但这里有个问题，无论 Arr 的实现是<code>数组</code>还是<code>单向链表</code>，<code>插入</code>的动作都太难实现。</p>
-<p>为了方便插入，通常都是反向操作：从后向前比较，遇到第一个<code>小于等于</code>的元素就停在他后面。<br>如果Arr是<code>数组</code>实现的，从后向前比较时，大的元素已经后移了。<br>如果Arr是<code>单向链表</code>实现的，从后向前比较时，可以直接拿到后面的指针。   </p>
  
       <!-- reward -->
       
