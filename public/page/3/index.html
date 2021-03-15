@@ -56,6 +56,65 @@
     
     
     <article
+  id="post-混沌时代的编辑器-ed"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/01/14/%E6%B7%B7%E6%B2%8C%E6%97%B6%E4%BB%A3%E7%9A%84%E7%BC%96%E8%BE%91%E5%99%A8-ed/"
+    >混沌时代的编辑器: ed</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/01/14/%E6%B7%B7%E6%B2%8C%E6%97%B6%E4%BB%A3%E7%9A%84%E7%BC%96%E8%BE%91%E5%99%A8-ed/" class="article-date">
+  <time datetime="2021-01-14T04:06:04.000Z" itemprop="datePublished">2021-01-14</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>Ken Thompson于1971年8月发布ed的第一个版本，是Unix操作系统三个最基础的组件(编译器、ed、shell)。</p>
+<p>打开文件后，默认进入的是”命令模式”，编辑文件时进入”编辑模式”。<br>命令模式下的导航命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">直接输入行号并回车，跳转到对应行，并回显对应行的文字（不带行号）。</span><br><span class="line">输入回车，会跳转到下一行，并回显对应行的文字（不带行号）。</span><br><span class="line">输入 . ，会重复显示当前行的文字（不带行号）。</span><br><span class="line">输入 n，会回显当前行的文字（带行号）。</span><br></pre></td></tr></table></figure>
+<p>切换至输入模式的命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a，在当前行的下一行开始插入文字；</span><br><span class="line">i，在当前行的上一行开始插入文字；</span><br><span class="line">c，抹除当前行的所有文字，重新输入。</span><br></pre></td></tr></table></figure>
+<p>注意 c 命令的危险性。</p>
+<p>切换至输入模式后，就请随意地打字吧，回车也会忠实地写入文件。<br>缺点是没有办法修改回车符以前的输错的文字。<br>如果想修改，必须退出当前的输入模式再尝试修改。<br>如果想退出输入模式，在新行输入 <code>.</code> 即可，就是英文句点。</p>
+<p>以下是一个 Linux ed 完整实例解析：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> ed test.txt     <span class="comment">#  编辑文本test.txt</span></span></span><br><span class="line">test.txt: No such file or directory   # 如果文件不存在,就生成该文件</span><br><span class="line">a           # a追加编辑,进入编辑模式</span><br><span class="line">one         # 在新行里编辑</span><br><span class="line">two         # 在新行里编辑</span><br><span class="line">three       # 在新行里编辑</span><br><span class="line">.           # 保存编辑的数据,退出编辑模式</span><br><span class="line">1           # 展示指定行号的数据,第1行</span><br><span class="line">one         # </span><br><span class="line">2           # 展示指定行号的数据,第2行</span><br><span class="line">two         # </span><br><span class="line">3           # 展示指定行号的数据,第3行</span><br><span class="line">three       # </span><br><span class="line">1,2         # -指定多行时仅展示最后指定行的数据</span><br><span class="line">two         # -</span><br><span class="line">1,2l        # -l可以展示多行数据,已$结尾</span><br><span class="line"><span class="meta">One$</span><span class="bash">        <span class="comment"># -</span></span></span><br><span class="line"><span class="meta">two$</span><span class="bash">        <span class="comment"># -</span></span></span><br><span class="line">,l          # &quot;,l&quot;是&quot;1,$l&quot;的简写,展示全部行的数据,已$结尾</span><br><span class="line"><span class="meta">one$</span><span class="bash">        <span class="comment">#</span></span> </span><br><span class="line"><span class="meta">two$</span><span class="bash">        <span class="comment">#</span></span> </span><br><span class="line"><span class="meta">three$</span><span class="bash">      <span class="comment">#</span></span> </span><br><span class="line">1i          # i向前行插入编辑,&quot;1i&quot;是第1行前插入编辑,进入编辑模式</span><br><span class="line">zore        # 在新行里编辑数据</span><br><span class="line">.           # 保存编辑数据,退出编辑模式</span><br><span class="line">1           # 展示指定行号的数据,第1行</span><br><span class="line">zore        # </span><br><span class="line">,l          # </span><br><span class="line"><span class="meta">zore$</span><span class="bash">       <span class="comment">#</span></span> </span><br><span class="line"><span class="meta">one$</span><span class="bash">        <span class="comment">#</span></span> </span><br><span class="line"><span class="meta">two$</span><span class="bash">        <span class="comment">#</span></span> </span><br><span class="line"><span class="meta">three$</span><span class="bash">      <span class="comment">#</span></span> </span><br><span class="line">1d          # d删除行,&quot;1d&quot;删除第1行</span><br><span class="line">,l          # </span><br><span class="line"><span class="meta">one$</span><span class="bash">        <span class="comment">#</span></span> </span><br><span class="line"><span class="meta">two$</span><span class="bash">        <span class="comment">#</span></span> </span><br><span class="line"><span class="meta">three$</span><span class="bash">      <span class="comment">#</span></span> </span><br><span class="line">1,2d        # d删除行,&quot;1,2d&quot;删除多行</span><br><span class="line">,l          # </span><br><span class="line"><span class="meta">three$</span><span class="bash">      <span class="comment">#</span></span> </span><br><span class="line">u           # u撤销上一次的编辑,就是上一次的文本变动</span><br><span class="line">,l          # </span><br><span class="line"><span class="meta">one$</span><span class="bash">        <span class="comment">#</span></span> </span><br><span class="line"><span class="meta">two$</span><span class="bash">        <span class="comment">#</span></span> </span><br><span class="line"><span class="meta">three$</span><span class="bash">      <span class="comment">#</span></span> </span><br><span class="line">1t1         # &#123;x,y&#125;tz 多行复制追加到第z行之后</span><br><span class="line">,l          # </span><br><span class="line"><span class="meta">one$</span><span class="bash">        <span class="comment"># 原第1行</span></span></span><br><span class="line"><span class="meta">one$</span><span class="bash">        <span class="comment"># 新插入的行数据</span></span></span><br><span class="line"><span class="meta">two$</span><span class="bash">        <span class="comment">#</span></span> </span><br><span class="line"><span class="meta">three$</span><span class="bash">      <span class="comment">#</span></span> </span><br><span class="line">1d          # d删除行,</span><br><span class="line">1m3         # &#123;x,y&#125;mz 多行复制覆盖到第z行开始后的数据</span><br><span class="line">,l          # </span><br><span class="line"><span class="meta">two$</span><span class="bash">        <span class="comment">#</span></span> </span><br><span class="line"><span class="meta">three$</span><span class="bash">      <span class="comment">#</span></span> </span><br><span class="line"><span class="meta">one$</span><span class="bash">        <span class="comment"># 第3行被覆盖</span></span></span><br><span class="line">u           # u撤销上一次的编辑</span><br><span class="line">1m4         # 覆盖不存在的行</span><br><span class="line">?           # ?报错</span><br><span class="line">1,$s/o/O/g  # s行内替换,当做行内修改用,可指定多行</span><br><span class="line">,l</span><br><span class="line"><span class="meta">One$</span><span class="bash">        <span class="comment"># 受替换影响</span></span></span><br><span class="line"><span class="meta">twO$</span><span class="bash">        <span class="comment"># 受替换影响</span></span></span><br><span class="line"><span class="meta">three$</span><span class="bash">      <span class="comment"># 未受影响</span></span></span><br><span class="line">wq          # w为保存编辑到文本,q为退出编辑器</span><br><span class="line">14          # 展示文本内字符数量</span><br><span class="line"><span class="meta">%</span><span class="bash">           <span class="comment"># 已退到命令行中</span></span></span><br></pre></td></tr></table></figure>
+<p>这是文件的内容是：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat text.text</span></span><br><span class="line">One</span><br><span class="line">twO</span><br><span class="line">three</span><br></pre></td></tr></table></figure>
+<p>后续影响:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ex (文本编辑器)，最初是扩展版本的ed。</span><br><span class="line">vi，基于ex的可视全面屏编辑器.</span><br><span class="line">sed，基于ed内脚本特征的标准UNIX流式编辑器。</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/" rel="tag">编辑器</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-bash的极简生存手册"
   class="article article-type-post"
   itemscope
@@ -536,54 +595,6 @@
     <div class="article-entry" itemprop="articleBody">
        
   <p>淘宝店家送了键盘膜，这玩意我是不用的。<br>这个mac触摸板听说很好，但我暂时没体会到，就买了小乙铝合金支架，架的高高的，45度角仰望它的屏幕。<br>拓展坞也必须买，蓝盛100w的那个，又配了一个tf卡，每次插上拓展坞就可以自动备份系统数据。<br>本身我就有俩键盘，一个红轴，一个静电容。<br>有一个显示器，是二手的，1080P，才四百块。<br>就想换个好点的，买了LG的4k屏，体验完全不一样。<br>还有就是内胆包，小米家的。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MBP13/" rel="tag">MBP13</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-买机记"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2019/11/11/%E4%B9%B0%E6%9C%BA%E8%AE%B0/"
-    >买机记</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2019/11/11/%E4%B9%B0%E6%9C%BA%E8%AE%B0/" class="article-date">
-  <time datetime="2019-11-11T05:21:35.000Z" itemprop="datePublished">2019-11-11</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>环滁皆山也。<br>新公司的领导看见我背着17寸的微星游戏本，说我们开发都用MBP13的，你也买一个吧。<br>我没有狠下心，一个星期后就到了十一，我反思这周背的有点累，就去看看MBP。<br>苹果的专卖店去看过，攒动的人头，像是抢购一样，看的心慌，冲动消费啊。<br>就打算回去上网查查，15的肯定买不起，Air的又太弱，只有mpb13适合我。<br>京东上只有标准版，就去官网看了定制版，最后在淘宝下单。<br>似乎很谨慎，似乎很莽撞。<br>拿到的那三天没有出门，都在折腾这个。<br>真轻！比那个游戏本的电源适配器都轻。<br>就靠你吃饭了，兄弟。</p>
  
       <!-- reward -->
       

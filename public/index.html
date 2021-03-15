@@ -56,6 +56,61 @@
     
     
     <article
+  id="post-时间和距离"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/11/%E6%97%B6%E9%97%B4%E5%92%8C%E8%B7%9D%E7%A6%BB/"
+    >时间和距离</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/11/%E6%97%B6%E9%97%B4%E5%92%8C%E8%B7%9D%E7%A6%BB/" class="article-date">
+  <time datetime="2021-03-11T06:10:07.000Z" itemprop="datePublished">2021-03-11</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="第一张图-原函数"><a href="#第一张图-原函数" class="headerlink" title="第一张图 原函数"></a>第一张图 原函数</h3><p>1.从原点开始后的<code>位移</code>,从原点开始后的时间t。<br>2.曲线平缓处是该段时间无移动。<br>3.曲线有缓有急，但都是向上走的。   </p>
+<h3 id="第二张图-一次导数"><a href="#第二张图-一次导数" class="headerlink" title="第二张图 一次导数"></a>第二张图 一次导数</h3><p>1.从原点开始后的<code>速度</code>(<code>单位内</code>增长的<code>位移</code>),从原点开始后的时间t。<br>2.曲线平缓处是该段时间<code>速度</code>不变。<br>3.曲线有峰有谷,但速度不会有负值,   </p>
+<blockquote>
+<p>  上峰段是速度变快,<br>  下谷段是速度变慢。   </p>
+</blockquote>
+<h3 id="第三张图-二次导数"><a href="#第三张图-二次导数" class="headerlink" title="第三张图 二次导数"></a>第三张图 二次导数</h3><p>1.从原点开始后的<code>加速度</code>(<code>单位内</code>增长的<code>速度</code>),从原点开始后的时间t。<br>2.曲线平缓处是该段时间<code>加速度</code>不变。<br>3.曲线有峰有谷,加速度有负值(过t轴时,<code>速度</code>达到最大值或最小值),   </p>
+<blockquote>
+<p>  正值上峰段下谷段对应<code>速度变快</code>过程中的急缓，<br>  负值下谷段上峰段对应<code>速度变慢</code>过程中的急缓。<br>  导函数的<code>正值峰谷</code>表现原函数在该段内的<code>上升快慢</code>的变化，<br>  导函数的<code>负值谷峰</code>表现原函数在该段内的<code>下降快慢</code>的变化。   </p>
+</blockquote>
+<h3 id="一些应用"><a href="#一些应用" class="headerlink" title="一些应用"></a>一些应用</h3><p>当函数A的值是<code>瞬时值</code>时，可以当他是第二张图的函数，<br>求该函数的最大或最小<code>瞬时值</code>，先求该函数的导函数A’，当A’=0时，得t轴的值t1，<br>t1代入函数A,得最大或最小<code>瞬时值</code>。  </p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-纯人肉算力、查对数表、计算器"
   class="article article-type-post"
   itemscope
@@ -138,7 +193,7 @@
   <p>群里有人发过一页面试题，其中第二道面试题比较有意思。</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">给定一个递增的整数数组，请编写一个函数，查找出该数组中不重复的元素，并给出复杂度。</span><br><span class="line">例如：[1,1,2,2,3,4,5,5,5]，输出为[3,4]，不限编程语言。</span><br></pre></td></tr></table></figure>
 <p>一般以为用栈只能消除偶数的重复元素，但真的是这样吗？<br>这道题是有序数组，还是可以用栈解决了这个问题。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">arr,i=<span class="number">0</span></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>( i &lt; (arr.length - <span class="number">1</span>) )&#123;</span><br><span class="line">    <span class="comment">//没到末尾</span></span><br><span class="line">    <span class="keyword">const</span> next = i + <span class="number">1</span></span><br><span class="line">    <span class="keyword">const</span> before = i - <span class="number">1</span></span><br><span class="line">    <span class="keyword">const</span> stak = fun(arr,next);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(arr[i] === stak[<span class="number">0</span>])&#123;</span><br><span class="line">      <span class="comment">//本元素和返回栈顶相同</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">/***</span></span><br><span class="line"><span class="comment">       * 开始消除逻辑</span></span><br><span class="line"><span class="comment">       * 我是递归到最末尾才开始往前判断的。</span></span><br><span class="line"><span class="comment">       * 入栈 还是普通的判断，原数组当前元素和栈顶不同就入栈。</span></span><br><span class="line"><span class="comment">       * </span></span><br><span class="line"><span class="comment">       * 出栈 是原数组当前元素和栈顶元素相同时，</span></span><br><span class="line"><span class="comment">       * 还要判断原数组前一位元素是否和当前元素相同：（这是精华）</span></span><br><span class="line"><span class="comment">       *    相同就直接返回栈，当做已经消除本位的重复元素。</span></span><br><span class="line"><span class="comment">       *    不同就当普通处理，消除栈顶元素。</span></span><br><span class="line"><span class="comment">       */</span></span><br><span class="line">      <span class="keyword">if</span>(i === <span class="number">0</span>)&#123;</span><br><span class="line">        stak.shift()</span><br><span class="line">        <span class="keyword">return</span> stak;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span>( arr[i] === arr[before] )&#123;</span><br><span class="line">        <span class="keyword">return</span> stak;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        stak.shift()</span><br><span class="line">        <span class="keyword">return</span> stak;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">/**</span></span><br><span class="line"><span class="comment">       * 结束消除逻辑</span></span><br><span class="line"><span class="comment">       */</span></span><br><span class="line">      </span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="comment">//本元素和返回栈顶不同</span></span><br><span class="line">      stak.unshift(arr[i])</span><br><span class="line">      <span class="keyword">return</span> stak</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//到了末尾</span></span><br><span class="line">    <span class="keyword">return</span> [ arr[i] ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(fun(arr))</span><br></pre></td></tr></table></figure> 
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">arr,i=<span class="number">0</span></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>( i &lt; (arr.length - <span class="number">1</span>) )&#123;</span><br><span class="line">    <span class="comment">//没到末尾</span></span><br><span class="line">    <span class="keyword">const</span> next = i + <span class="number">1</span></span><br><span class="line">    <span class="keyword">const</span> before = i - <span class="number">1</span></span><br><span class="line">    <span class="keyword">const</span> stack = fun(arr,next);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(arr[i] === stack[<span class="number">0</span>])&#123;</span><br><span class="line">      <span class="comment">//本元素和返回栈顶相同</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">/***</span></span><br><span class="line"><span class="comment">       * 开始消除逻辑</span></span><br><span class="line"><span class="comment">       * 我是递归到最末尾才开始往前判断的。</span></span><br><span class="line"><span class="comment">       * 入栈 还是普通的判断，原数组当前元素和栈顶不同就入栈。</span></span><br><span class="line"><span class="comment">       * </span></span><br><span class="line"><span class="comment">       * 出栈 是原数组当前元素和栈顶元素相同时，</span></span><br><span class="line"><span class="comment">       * 还要判断原数组前一位元素是否和当前元素相同：（这是精华）</span></span><br><span class="line"><span class="comment">       *    相同: 说明超过2个重复元素，直接返回栈 </span></span><br><span class="line"><span class="comment">       *    不同: 说明只剩2个重复元素，消除栈顶元素，返回栈</span></span><br><span class="line"><span class="comment">       */</span></span><br><span class="line">      <span class="keyword">if</span>(i === <span class="number">0</span>)&#123;</span><br><span class="line">        stack.shift()</span><br><span class="line">        <span class="keyword">return</span> stack;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span>( arr[i] === arr[before] )&#123;</span><br><span class="line">        <span class="keyword">return</span> stack;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        stack.shift()</span><br><span class="line">        <span class="keyword">return</span> stack;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">/**</span></span><br><span class="line"><span class="comment">       * 结束消除逻辑</span></span><br><span class="line"><span class="comment">       */</span></span><br><span class="line">      </span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="comment">//本元素和返回栈顶不同</span></span><br><span class="line">      stack.unshift(arr[i])</span><br><span class="line">      <span class="keyword">return</span> stack</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//到了末尾</span></span><br><span class="line">    <span class="keyword">return</span> [ arr[i] ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(fun(arr))</span><br></pre></td></tr></table></figure> 
       <!-- reward -->
       
     </div>
@@ -504,54 +559,6 @@
 <p>一个从小到大排序的 有序数据集Arr ，当成<code>小山坡</code>。<br>待插入的 数据n ，当成<code>粪球</code>。<br>比较 n 和 Arr 里面元素的大小如同<code>推粪球</code>。<br>遇到 Arr 里面<code>比较小</code>的数据就继续往上推。<br>遇到 Arr 里面<code>大于等于</code>的数据就停在前面。   </p>
 <p>但这里有个问题，无论 Arr 的实现是<code>数组</code>还是<code>单向链表</code>，<code>插入</code>的动作都太难实现。</p>
 <p>为了方便插入，通常都是反向操作：从后向前比较，遇到第一个<code>小于等于</code>的元素就停在他后面。<br>如果Arr是<code>数组</code>实现的，从后向前比较时，大的元素已经后移了。<br>如果Arr是<code>单向链表</code>实现的，从后向前比较时，可以直接拿到后面的指针。   </p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-质数之想破头"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/02/22/%E8%B4%A8%E6%95%B0%E4%B9%8B%E6%83%B3%E7%A0%B4%E5%A4%B4/"
-    >质数之想破头</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/02/22/%E8%B4%A8%E6%95%B0%E4%B9%8B%E6%83%B3%E7%A0%B4%E5%A4%B4/" class="article-date">
-  <time datetime="2021-02-22T09:20:25.000Z" itemprop="datePublished">2021-02-22</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>质数m 仅有 <code>m * 1</code> 这一种的组合方法，可以认为没有正常组合法。<br>而 <code>称法 *</code> 可以理解为 <code>加法 +</code> 的快捷记号。<br>例如：<code>2 * 3</code> 为 <code>2 + 2 + 2</code> 的 快捷记号。<br><code>6</code>有 <code>2 * 3</code> 和 <code>6 * 1</code> 两种 组合法，可以认为有一种正常的组合法。</p>
-<p>一个<code>正整数</code>如果有了正常的组合法，就有了分解成<code>并行</code>处理<code>更小的正整数</code>的方法。<br>没有的话，只能单线程处理，或者说是最原始的暴力解法。<br>即使都有<code>并行</code>处理，<code>4 * 4</code> 的<code>并行</code>处理应该比<code>2 * 7</code>这种更优。（完全瞎猜    </p>
-<p>我猜想质数类似于<code>两点之间的最短距离</code>之类的解。<br>思考如何组合质数不太靠谱，<br>转而思考如何分解正整数，然后发现质数，才是正道。  </p>
  
       <!-- reward -->
       
