@@ -56,6 +56,104 @@
     
     
     <article
+  id="post-只做表面工作的堆"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/02/23/%E5%8F%AA%E5%81%9A%E8%A1%A8%E9%9D%A2%E5%B7%A5%E4%BD%9C%E7%9A%84%E5%A0%86/"
+    >只做表面工作的堆</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/02/23/%E5%8F%AA%E5%81%9A%E8%A1%A8%E9%9D%A2%E5%B7%A5%E4%BD%9C%E7%9A%84%E5%A0%86/" class="article-date">
+  <time datetime="2021-02-23T09:09:09.000Z" itemprop="datePublished">2021-02-23</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>看了堆的资料，这个介绍的不错：<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/21bef3fc3030">最大堆（创建、删除、插入和堆排序）</a></p>
+<p><code>完全二叉树</code>是每层<code>排满</code>才往下一层排数据。<a target="_blank" rel="noopener" href="https://www.nowcoder.com/questionTerminal/2d073c6f03f246878df159a1217ead07?toCommentId=3151655">相关判断题</a><br><code>最大堆</code>选择<code>完全二叉树</code>结构的好处是，在每次 插入/删除 新元素时，防止二叉树退化成<code>链表</code>，充分用到二叉树<code>快速查找</code>的优点。</p>
+<p>其他的排序不但将最大元素放到头部，其他小元素也都严格排序站好了队。</p>
+<p><code>最大堆</code>在排序时，每次把一个元素排进<code>完全二叉树</code>最后一位，并立即做比较，使当前分支中的最大元素<code>上浮</code>到了节点，根节点总是最大元素。  </p>
+<p>删除<code>最大堆</code>的根节点后，把最后一位元素放到根节点，然后重新排序。<br>虽然多了重新排序的动作，但他可以<code>快速查找</code>，使得成本也降到最小。    </p>
+<p>总结一点就是：排序做到了刚刚好，不多浪费一步（选择<code>完全二叉树</code>结构是关键）。  </p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-小型排序和大型排序"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/02/23/%E5%B0%8F%E5%9E%8B%E6%8E%92%E5%BA%8F%E5%92%8C%E5%A4%A7%E5%9E%8B%E6%8E%92%E5%BA%8F/"
+    >小型排序和大型排序</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/02/23/%E5%B0%8F%E5%9E%8B%E6%8E%92%E5%BA%8F%E5%92%8C%E5%A4%A7%E5%9E%8B%E6%8E%92%E5%BA%8F/" class="article-date">
+  <time datetime="2021-02-23T03:41:25.000Z" itemprop="datePublished">2021-02-23</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><code>小型排序</code>就三种<code>选择</code>，<code>冒泡</code>，<code>插入</code>。<br>排序过程中分为 UnSortArr 和 SortedArr 两部分。<br>其中：<br><code>选择</code> 在操作 SortedArr 的时间是 O(1) ，在操作 UnSortArr 的时间是 O(n)。<br><code>冒泡</code> 在操作 SortedArr 的时间是 O(1) ，在操作 UnSortArr 的时间是 O(n)，但在 UnSortArr 做了排序交换。<br><code>插入</code> 在操作 SortedArr 的时间是 O(n) ，在操作 UnSortArr 的时间是 O(1)。  </p>
+<p><code>大型排序</code>都是先将大数据分解成小数据，再用<code>小型排序</code>来处理小数据，多数是用<code>插入</code>。<br>因为：<br><code>大型排序</code>可以控制 SortedArr 为最终排序顺序，即时间为 O(1)。<br><code>小型排序</code>用<code>插入</code>来控制 UnSortArr 的时间为 O(1)。  </p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-推粪球"
   class="article article-type-post"
   itemscope
@@ -516,124 +614,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ip/" rel="tag">ip</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-终极文本分析工具"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/01/29/%E7%BB%88%E6%9E%81%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/"
-    >终极文本分析工具</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/01/29/%E7%BB%88%E6%9E%81%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/" class="article-date">
-  <time datetime="2021-01-29T05:46:10.000Z" itemprop="datePublished">2021-01-29</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>当前常用的文本分析工具，尤其是指三剑客”grep”,”sed”,”awk”。他们在查找某个单词，处理某一行，处理某一个字段，简单的字段联动时，还是可以应付的。<br>perl,ruby之类的语言也只是简化三剑客的操作，并没有更一步处理复杂的文本。</p>
-<p>对一个文本里的多个字段做聚合处理时，awk需要事先知道这些字段的前后位置。它忽略了其他字段，因为其他字段对他来说没有意义。但是如果每个字段都有意义，事情就复杂起来了。</p>
-<p>即使awk,perl,ruby强行处理，写出来的代码既复杂又不直观，后续如果待处理文本中如有字段变更意义，代码的升级会非常痛苦。</p>
-<p>词法分析和语法分析就是终极工具。它几乎可以无视文本格式(有的文本中格式是有意义的，不能忽视)，最极端的功能是将一行json文本格式化成漂亮的多行缩进排布。<br>jison就是这样一种工具，它既可以转换文本格式，还可以根据规则执行文本中描述的逻辑。</p>
-<p>test.jison</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">%lex</span><br><span class="line">%%</span><br><span class="line"></span><br><span class="line">\s+			/* skip whitespace */</span><br><span class="line">\w+			return &#x27;ATOM&#x27;</span><br><span class="line">&quot;:&quot;			return &#x27;INFO&#x27;</span><br><span class="line">&quot;&#123;&quot;			return &#x27;BEGIN&#x27;</span><br><span class="line">&quot;&#125;&quot;			return &#x27;END&#x27;</span><br><span class="line">&lt;&lt;EOF&gt;&gt;		return &#x27;EOF&#x27;</span><br><span class="line">.			return &#x27;INVALID&#x27;</span><br><span class="line"></span><br><span class="line">/lex</span><br><span class="line"></span><br><span class="line">%start experssions</span><br><span class="line">%%</span><br><span class="line"></span><br><span class="line">experssions</span><br><span class="line">	: item EOF</span><br><span class="line">		&#123; console.log($1); &#125;</span><br><span class="line">	;</span><br><span class="line"></span><br><span class="line">item</span><br><span class="line">	: ATOM INFO ATOM</span><br><span class="line">		&#123; $$ = $1 + &quot; : &quot; + $3; &#125;</span><br><span class="line">	| ATOM INFO item </span><br><span class="line">		&#123; $$ = $1 + &quot; : &quot; + $3; &#125;</span><br><span class="line">	| BEGIN item END</span><br><span class="line">		&#123; $$ = &quot;&#123;&quot; + $2 + &quot;&#125;&quot;; &#125;</span><br><span class="line">	;</span><br></pre></td></tr></table></figure>
-<p>test.txt</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  xxx:&#123;</span><br><span class="line"></span><br><span class="line">yyyy:&#123;</span><br><span class="line">zzz:aaaa&#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jison test.jison</span><br><span class="line">node test.js test.txt</span><br></pre></td></tr></table></figure>
-<p>执行结果</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;xxx : &#123;yyyy : &#123;zzz : aaaa&#125;&#125;&#125;</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BC%96%E8%AF%91%E5%99%A8/" rel="tag">编译器</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-文件描述符AND水枪"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/01/27/%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6AND%E6%B0%B4%E6%9E%AA/"
-    >文件描述符AND水枪</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/01/27/%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6AND%E6%B0%B4%E6%9E%AA/" class="article-date">
-  <time datetime="2021-01-27T08:58:40.000Z" itemprop="datePublished">2021-01-27</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>Shell<code>辅助</code>我们调用其他命令。我们要时时刻刻记住，是Shell启动了<code>命令</code>，<code>命令</code>被启动时看到的<code>环境</code>是被Shell修改了的。<br>比如：  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat *.log  </span><br></pre></td></tr></table></figure>
-<p><code>命令cat</code>会输出工作目录下所有”.log”结尾的文件内容，因为Shell启动<code>命令cat</code>前时把 “*.log”替换了。  </p>
-<p>那么我们写<code>文件重定向</code>时Shell做了什么呢？<br>首先我们看看重定向的写法:  </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cmd0 0&lt; list.txt     # 标准输入  </span><br><span class="line">cmd0 &lt; list.txt      # 标准输入(简写)  </span><br><span class="line"></span><br><span class="line">cmd1 1&gt; data.log     # 标准输出  </span><br><span class="line">cmd1 &gt; data.log      # 标准输出(简写)  </span><br><span class="line"></span><br><span class="line">cmd2 2&gt; err.log      # 标准错误输出(其他文件描述符不能简写)   </span><br></pre></td></tr></table></figure>
-<p>Shell会扫描到 <code>0&lt;</code>, <code>&lt;</code>, <code>1&gt;</code>, <code>&gt;</code>, <code>2&gt;</code> 等带有<code>&lt;</code>,<code>&gt;</code>的字符串，开始设置<code>文件描述符</code>的<code>重定向</code>，然后启动<code>命令cmd</code>。<br><code>命令cmd</code>以正常的方式工作，如果用到了被Shell重定向的<code>文件描述符</code>，他也不会察觉到。   </p>
-<p><code>标准输入0</code>是单向，向内的。数据传输到命令cmd0自身。<br><code>标准输出1</code>和<code>标准错误2</code>是单向，向外的。<br>其他文件描述符都是双向的。   </p>
-<p><code>cmd0</code> 如果用到了<code>标准输入</code>，它等来的不是<code>键盘</code>输入的数据，而是<code>文件</code>传入的数据。<br><code>cmd1</code> 如果用到了<code>标准输出</code>，它以为把数据输出到<code>屏幕</code>上，其实去了<code>文件</code>中。  </p>
-<p>把<code>文件描述符</code>当成<code>水枪</code>。<br>把左边的<code>命令cmd</code>和右边的<code>文件file</code>当成水池。   </p>
-<p>文件描述符是进程私有的，它指向的<code>文件</code>其实是<code>套接字</code>，<br>真实情况是只有<code>操作系统</code>能打开文件，操作系统掌握着<code>套接字</code>，所以<code>套接字</code>是共有的。  </p>
-<p>所以<code>文件描述符</code>可以随时修改指向的<code>套接字</code>。<br>例如 <code>2&gt;&amp;1</code>，即是将<code>2号文件描述符</code>重新指向<code>1号文件描述符</code>当时指向的<code>套接字</code>。<br>可以比喻成 <code>2号水枪</code>也去<code>1号水枪</code>放水的<code>池子</code>里放水了。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cmd file1   # file1被cmd打开，默认给它一个新的文件描述符，012已经被占用了，所以会有文件描述符3表示打开的file1。   </span><br><span class="line">cmd &lt; file2 # file2被Shell重定向到0，即用0来表示打开的file2。而cmd在等待标准输入0的输入数据。</span><br><span class="line"></span><br><span class="line">cmd &gt;file3 2&gt;&amp;   # 1号文件描述符指向file3，2号文件描述符跟着也指向1号文件描述符指向的file3。</span><br><span class="line"><span class="meta">#</span><span class="bash"> 故1号2号文件描述符都指向了同一个文件。</span>  </span><br><span class="line">cmd 2&gt;&amp; &gt;file4   #2号文件描述符跟着1号文件描述符指向的文件，而1号描述符转而指向file4。</span><br><span class="line"><span class="meta">#</span><span class="bash"> 故1号2号文件描述符分别指向了两个文件。</span></span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://www.junmajinlong.com/shell/fd_duplicate/">其他补充</a></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/" rel="tag">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
 
     </footer>
   </div>
