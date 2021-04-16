@@ -56,6 +56,126 @@
     
     
     <article
+  id="post-为了封装变化"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/01/%E4%B8%BA%E4%BA%86%E5%B0%81%E8%A3%85%E5%8F%98%E5%8C%96/"
+    >为了封装变化</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/01/%E4%B8%BA%E4%BA%86%E5%B0%81%E8%A3%85%E5%8F%98%E5%8C%96/" class="article-date">
+  <time datetime="2021-03-01T09:50:03.000Z" itemprop="datePublished">2021-03-01</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="初级抽象"><a href="#初级抽象" class="headerlink" title="初级抽象"></a>初级抽象</h3><p>当我们开始用<code>面向对象</code>的方式去<code>重构</code>一段<code>面向过程</code>的代码时</p>
+<p>最开始：<br><code>重构</code>成<code>一个类</code>，<code>公共变量</code>成为<code>私有属性</code>，<code>公共方法</code>控制<code>主逻辑</code>（<code>主方法</code>），<code>私有方法</code>封装<code>变化</code>（<code>助手方法</code>）。   </p>
+<p>执行的时候，用<code>这个类</code>实例化一个<code>对象</code>，然后执行这个对象的<code>主方法</code>。  </p>
+<p>当<code>助手方法</code>越来越独立：<br>比如，它在调用自己的<code>助手方法</code>，这一套方法有自己的<code>公共属性</code>时，就需要把这一套方法和属性分出来成为<code>新类</code>。<br>最开始的类是<code>客户类</code>，新分出来的是<code>服务类</code>。<br>当<code>客户类</code>需要多个服务时，就会有多个<code>服务类</code>。  </p>
+<p>执行的时候，用<code>客户类</code>实例化一个<code>客户对象</code>，传入它需要的<code>服务类</code>的对象，然后执行这个<code>客户对象</code>的<code>主方法</code>。</p>
+<p><code>服务类</code>应对变化：<br>如果<code>需求</code>变化了，最好是仅修改<code>服务类</code>对象。   </p>
+<p>执行的时候，用客户类实例化一个<code>客户对象</code>，传入<code>新服务类</code>对象，而<code>新服务类</code>包含了绝大部分的变化。  </p>
+<p><code>客户类</code>应对变化：<br><code>客户类</code>应该提前把需要的<code>服务类</code>抽象成通用的父类，比如<code>抽象类</code>、<code>接口interface</code>，这样在接收<code>新对象</code>时就不用修改<code>类型限制</code>。<br>这些<code>类型限制</code>的目的是想保证新对象的<code>方法</code>不变，其实<code>类型限制</code>最好改成<code>接口interface</code>。  </p>
+<p>执行的时候，用客户类实例化一个客户对象，传入实现了同样<code>接口interface</code>的<code>新服务类</code>对象，然后执行这个<code>客户对象</code>的<code>主方法</code>。  </p>
+<p>总结：<br>只需要一个类 —&gt; 客户类 需要 服务类 —&gt; 客户类 需要 实现同样接口的服务类</p>
+<h3 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h3><p>1.代理模式：（用旧方法名复用旧方法，外部）<br><code>客户类</code>原先调用的<code>实现了某interface的服务类</code>对象的方法，需要在该方法前后增加一些处理工作。<br>(这些新增的工作也可以在<code>客户类</code>内部做的，但这不符合<code>最小修改</code>，应该只修改是服务类)<br>新写一个<code>实现了同样interface的服务类</code>做了这些新增的处理工作，而方法名不变，就把它当<code>第一服务类</code>。</p>
+<p>2.装饰模式：（用旧方法名复用旧方法，内部）<br>和<code>代理模式</code>类似，是<code>客户类</code>内部 主动实例化<code>装饰对象</code>（实例化时传入<code>旧对象</code>），让它成为增强版的<code>旧对象</code>，后续调用<code>装饰对象</code>的<code>旧方法名</code>。<br>在<code>客户类</code>内部实例化是为了<code>按需选择</code>不同的装饰对象</p>
+<p>3.适配器模式：（用新方法名复用旧方法）<br><code>客户类</code>需要<code>实现适配器interface的服务类</code>，这个类的方法适配了其他<code>已有的服务类</code>的方法，两者方法名不同。<br>与<code>外观模式</code>比，<code>客户类</code>调用的方法不变。</p>
+<p>4.外观模式：（用新方法名复用一堆旧方法逻辑）<br><code>一套复杂的子服务类</code>被<code>第一服务类</code>管理，<code>客户类</code>只需知道第一服务类可能解决这个需求就行了。<br>通常是已经存在了<code>一套复杂的子服务类</code>，如何理清它们的关系太困难。就写一个<code>第一服务类</code>来简化<code>客户类</code>的调用。<br>与<code>适配器模式</code>比，<code>客户类</code>调用新方法。</p>
+<p>5.桥接模式：（一个多变的新对象）<br><code>组合优于继承</code>的经典例子<br><code>实现了某interface的第二服务类</code>的各方法独立且多变，每种变化都写单独一个类的话，类的数量会爆炸，<br>写一套<code>包含单独方法的interface</code>，<code>第二服务类</code>的方法去引用这些单独实现的方法。<br><code>第一服务类</code>生成了<code>实现了某interface的第二服务类</code>的对象，并返回给<code>客户类</code>，<code>客户类</code>直接操作<code>第二服务类</code>。  </p>
+<p>6.组合模式：（一群同类对象，嵌套）<br><code>实现了某interface的服务类</code>，可能有多个。<br>有一个是<code>大哥A</code>，<code>大哥A</code>通过容器管理弟弟妹妹，弟弟妹妹里也可能有一个<code>大哥AA</code>，<code>大哥AA</code>通过容器也管理一批弟弟妹妹，可以如此循环。<br>客户类需要<code>大哥A</code>。   </p>
+<p>7.享元模式：（一群同类对象，少内存占用）<br>由于系统中存在太多类似的<code>第一服务类</code>对象，就通过<code>内存共享</code>减少<code>第一服务类</code>对象的内存占用，<br>这些<code>第一服务类</code>把内部通用的属性和方法移到某一个专门的单例<code>享元类</code>，有一个单例工厂，专门生产这些单例。<br><code>客户类</code>只需知道调用<code>第一服务类</code>就行了。<br><code>组合模式</code>就有很多类似的<code>服务类</code>，可用<code>享元模式</code>来减少内存占用。</p>
+<h3 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h3><p>B干的事如下： 自己状态的管理，管理A的状态，传递A的消息，传给A的消息，辅助A处理C，</p>
+<p>1.模板方法模式：（特殊的继承套路）<br>在普通的继承中，父类留出要重写的方法，保留 如何调用这些方法 的<code>主方法</code>，final。<br>子类接着重写这些方法，<code>客户类</code>调用子类对象的<code>主方法</code>。</p>
+<p>2.状态模式：（A控制B，C是B的状态，A不知道）<br><code>上下文类</code>保存了<code>Status interface</code>的多个对象，并设置其中一个对象为内部的 当前 <code>Status类</code>对象变量，<br>这些<code>对象</code>可以通过<code>上下文类</code>对象的<code>change方法</code>，来改变<code>上下文类</code>对象内部的 当前 <code>Status类</code>对象变量。<br>是的，这些 <code>Status类</code>对象 彼此都知道对方的存在。<br><code>客户类</code>通过<code>上下文类</code>间接调用其中的当前<code>Status类</code>对象变量，<br><code>Status类</code>会通知<code>上下文类</code>要切换别的<code>Status类</code>，而<code>客户类</code>并不知道。</p>
+<p>3.策略模式：（A控制B，也控制B的状态C）<br>和<code>状态模式</code>不同的是<code>客户类</code>会通过<code>上下文类</code>主动切换 当前<code>策略类对象</code>，<br>这些 <code>策略类</code>对象 并不知道彼此。</p>
+<p>4.备忘录模式：（A控制B操作<code>A生成的C</code>，B是C的容器）<br><code>客户类</code>调用<code>第一服务类</code>。<br><code>第一服务类</code>会在每次属性发生变化时，把<code>要发生变化的属性</code>保存到新的<code>备忘类</code>对象，<br>并把该<code>备忘类</code>对象，传给<code>备忘容器类</code>对象保存（备忘类和备忘容器类 的关系 是<code>组合模式</code>里的哥哥管理弟弟妹妹）。<br><code>备忘容器类</code>对象内部是按<code>栈</code>的方式保存传来的<code>对象</code>，方便<code>第一服务类</code>对象随时取回。</p>
+<p>5.观察者模式：（A控制B操作C，B是单向传递消息，C是多个对象）<br><code>客户类</code>调用<code>发布者类</code>对象。<br><code>发布者类</code>内部有<code>消息通知interface</code>容器，会按<code>主题</code>分成几个容器。<br>实现了<code>消息通知interface</code>类的对象，会向<code>发布者类</code>对象注册想订阅的<code>主题</code>，<br><code>发布者类</code>对象将这些<code>订阅者</code>保存到不同<code>主题</code>的容器内。<br><code>发布者类</code>对象会把<code>客户类</code>对象传来的消息按不同的主题依次通知到各个<code>订阅者</code>。<br>当某个<code>订阅者</code>通过<code>客户类</code>对象传递同一<code>主题</code>的消息时，会有死循环风险。</p>
+<p>6.中介者模式：（A控制B操作C，B是双向中介，C是多个对象）<br><code>组件interface</code>和<code>中介interface</code>会双向调用。<br>有一个<code>中介实现类</code>，管理多个<code>组件实现类</code>。<br><code>中介类</code>和<code>主件类</code>之间有耦合，<code>组件类</code>之间没有耦合。<br><code>中介类</code>和<code>客户类</code>的沟通是双向的，和<code>组件类</code>沟通也是双向的。</p>
+<p>7.迭代器模式：（A控制B操作C，B是迭代器，C是容器）<br><code>客户类</code>会调用<code>实现了某interface</code>的<code>容器服务类B</code>，并迭代该容器内的元素。<br>通常<code>容器服务器B</code>会自带可以迭代自身的<code>迭代服务类A</code>，这样的话<code>客户类</code>调用<code>B类对象</code>的迭代方法就够了。<br><code>客户类</code>也可以指定<code>实现了某interface</code>的<code>迭代服务器A</code>给<code>容器服务类B</code>。</p>
+<p>8.责任链模式：（A控制B操作C，B是<code>操作对象容器</code>）<br>和<code>组合模式</code>类似，但没有嵌套，且<code>大哥A</code>会把包含弟弟妹妹的容器交给<code>客户类</code>，让<code>客户类</code>自主控制执行，不一定全部都执行。  </p>
+<p>9.命令模式：（A控制B操作C，B是流程控制，C是在干活）<br><code>组合优于继承</code>的另一个经典例子。<br><code>客户类</code>往<code>实现了命令interface的第一服务类</code>B对象传入<code>实现了接收interface的第二服务类</code>C对象（可能多个<code>C对象</code>），<br><code>B对象</code>会调用<code>C对象</code>的方法（控制调用过程，可能调用多个方法，<code>C对象</code>是真正干活的服务对象）。</p>
+<p>10.访问者模式：（A控制B操作C，C是数据表，B是<code>一群操作对象</code>）<br><code>实现了访问者interface</code>的类作为<code>访问者</code>，被<code>客户类</code>传入<code>数据表对象</code>的<code>欢迎访问方法</code>。<br><code>继承某抽象类</code>的 <code>子类</code> 作为数据表，有<code>欢迎访问方法</code>接收<code>访问者</code>，并主动调用<code>访问者</code>的<code>操作数据方法</code>，来操作该<code>数据表</code>的数据。<br>（数据表对象 被动等待 访问者 ，再把 本对象 传给 访问者）<br><code>客户类</code>让每个<code>访问者</code>都去<code>数据表容器类</code>中遍历操作<code>数据表</code>的数据。<br><code>数据表类</code>不应该频繁变动<code>属性</code>，因为每次变动，<code>访问者</code>也要跟着修改<code>操作方法</code>。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
+  id="post-高数苦海的救命稻草"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/02/25/%E9%AB%98%E6%95%B0%E8%8B%A6%E6%B5%B7%E7%9A%84%E6%95%91%E5%91%BD%E7%A8%BB%E8%8D%89/"
+    >高数苦海的救命稻草</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/02/25/%E9%AB%98%E6%95%B0%E8%8B%A6%E6%B5%B7%E7%9A%84%E6%95%91%E5%91%BD%E7%A8%BB%E8%8D%89/" class="article-date">
+  <time datetime="2021-02-25T03:28:50.000Z" itemprop="datePublished">2021-02-25</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><a target="_blank" rel="noopener" href="https://www.shuxuele.com/calculus/integration-introduction.html">积分入门</a><br>函数 f(x) 求 <code>瞬时的变化</code>，把f(x)当<code>原函数</code>，求<code>导函数</code>f’(x) ，用 <a target="_blank" rel="noopener" href="https://www.shuxuele.com/calculus/derivatives-rules.html">导数法则</a><br>函数 f(x) 求 <code>变化的累积</code>，把f(x)当<code>导函数</code>，求<code>原函数</code>，用 <a target="_blank" rel="noopener" href="https://www.shuxuele.com/calculus/integration-rules.html">积分法则</a>  </p>
+<p><code>原函数</code>和<code>导函数</code> 的转化关系，就是<code>微积分</code>。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-只做表面工作的堆"
   class="article article-type-post"
   itemscope
@@ -470,150 +590,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/perl/" rel="tag">perl</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-幻想中的2021年读书计划"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/02/05/%E5%B9%BB%E6%83%B3%E4%B8%AD%E7%9A%842021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/"
-    >幻想中的2021年读书计划</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/02/05/%E5%B9%BB%E6%83%B3%E4%B8%AD%E7%9A%842021%E5%B9%B4%E8%AF%BB%E4%B9%A6%E8%AE%A1%E5%88%92/" class="article-date">
-  <time datetime="2021-02-05T06:55:58.000Z" itemprop="datePublished">2021-02-05</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="新读"><a href="#新读" class="headerlink" title="新读"></a>新读</h2><h4 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h4><p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/2628">SQL查询：从入门到实践（第４版）</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1102">SQL必知必会（第4版）</a></p>
-<h4 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h4><p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1861">Python编程：从入门到实践</a></p>
-<p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1564">流畅的Python</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=UB7209b099f1c00">写给程序员的Python教程</a></p>
-<h4 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h4><p>!!! 现代操作系统：原理与实现</p>
-<p>!!! <a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=N11908">UNIX操作系统设计</a></p>
-<p>!!! 深入理解计算机系统</p>
-<p><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=N12685">操作系统真象还原</a></p>
-<h4 id="Perl"><a href="#Perl" class="headerlink" title="Perl"></a>Perl</h4><p>!!! Perl语言入门 第7版</p>
-<p>!!! Perl语言编程思想</p>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>!!! <a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=UB72639731c8b8e">精通Rust 第2版</a></p>
-<p>!!! <a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=N42830">重构 第二版</a></p>
-<p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/875">算法 第四版</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1308">自制编译器</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=UB6c9665253b5f4">代码精进之路 从码农到工匠</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=N10718">Ruby程序员修炼之道（第2版）</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.epubit.com/bookDetails?id=UB7227cc46b5b87">C++语言的设计和演化</a></p>
-<p>深入浅出Excel VBA</p>
-<h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><h4 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h4><p>!!! 深入理解JAVA虚拟机</p>
-<p>深入理解JVM字节码</p>
-<p><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1460">垃圾回收的算法与实现</a></p>
-<h4 id="Ruby"><a href="#Ruby" class="headerlink" title="Ruby"></a>Ruby</h4><p>!!! Ruby元编程</p>
-<p>!!! Ruby原理剖析</p>
-<p><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1843">Ruby基础教程（第5版）</a></p>
-<h4 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h4><p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/2472">JS高级程序设计 第四版</a></p>
-<p>!!! JS语言精粹</p>
-<p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1488">你不知道的JavaScript</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1290">深入浅出Node.js</a></p>
-<h4 id="操作系统-1"><a href="#操作系统-1" class="headerlink" title="操作系统"></a>操作系统</h4><p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1098">计算的本质：深入剖析程序和计算机</a></p>
-<p>!!! UNIX/Linux/OS X中的Shell编程（第4版）</p>
-<p><a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1165">Unix内核源码剖析</a></p>
-<p>编码: 隐匿在计算机软硬件背后的语言</p>
-<p>Unix &amp; Linux大学教程</p>
-<h4 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h4><p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1229">图解HTTP</a></p>
-<p>TCP/IP网络编程</p>
-<h4 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h4><p>!!! antlr4权威指南</p>
-<p>精通正则表达式</p>
-<p>编程语言实现模式</p>
-<p>自己动手实现Lua</p>
-<h4 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h4><p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1649">七周七并发模型</a></p>
-<p>!!! <a target="_blank" rel="noopener" href="https://www.ituring.com.cn/book/1691">SQL 经典实例</a></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B9%B1%E8%AF%AD/" rel="tag">乱语</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6/" rel="tag">读书</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-IP的一些资料"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/02/02/IP%E7%9A%84%E4%B8%80%E4%BA%9B%E8%B5%84%E6%96%99/"
-    >IP的一些资料</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/02/02/IP%E7%9A%84%E4%B8%80%E4%BA%9B%E8%B5%84%E6%96%99/" class="article-date">
-  <time datetime="2021-02-02T02:23:44.000Z" itemprop="datePublished">2021-02-02</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="中国的IPv4数量"><a href="#中国的IPv4数量" class="headerlink" title="中国的IPv4数量"></a>中国的IPv4数量</h3><p><a target="_blank" rel="noopener" href="http://www.cac.gov.cn/wxb_pdf/0228043.pdf">http://www.cac.gov.cn/wxb_pdf/0228043.pdf</a> 的第5页，”截至 2018 年 12 月，我国 IPv4 地址数量为 33892 万个。”</p>
-<h3 id="一些聚合网站"><a href="#一些聚合网站" class="headerlink" title="一些聚合网站"></a>一些聚合网站</h3><p><a target="_blank" rel="noopener" href="http://ip.bczs.net/">http://ip.bczs.net/</a><br><a target="_blank" rel="noopener" href="http://ip.yqie.com/">http://ip.yqie.com/</a></p>
-<p>可以查询各国ip数量分布，其中有研究价值的是各省市，比如<br><a target="_blank" rel="noopener" href="http://ip.yqie.com/cn/shanghai/">上海IP地址列表</a><br><a target="_blank" rel="noopener" href="http://ip.yqie.com/cn/shanghai/wangba.htm">上海市网吧IP地址列表</a><br>可以看见各机构申请IP的数量</p>
-<p>当前公网IP地址是 116.233.76.62</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">您的本机 IP：116.233.76.62</span><br><span class="line">所属国家/地区：中国(CN)</span><br><span class="line">路由信息：116.233.0.0/16</span><br><span class="line">区域号码：AS4812</span><br><span class="line">区域名称：CHINANET-SH-AP</span><br><span class="line">描述信息：China Telecom (Group) Shanghai Telecom Company Shanghai China</span><br><span class="line">中国电信（集团） 上海电信公司 上海，中国</span><br><span class="line"></span><br><span class="line">IP地址段：116.224.0.0 - 116.239.255.255</span><br><span class="line">IP段名称：CHINANET-SH</span><br><span class="line">IP段描述：CHINANET Shanghai province network China Telecom No.31,jingrong street Beijing 100032</span><br><span class="line"></span><br><span class="line">参考数据：116.232.205.0-116.233.89.255 上海市徐汇区 电信</span><br><span class="line">IP数据：116.224.0.0-116.239.255.255 中国 上海 上海</span><br></pre></td></tr></table></figure>
-<h3 id="MAC的直连范围"><a href="#MAC的直连范围" class="headerlink" title="MAC的直连范围"></a>MAC的直连范围</h3><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6917139283463634951">https://juejin.cn/post/6917139283463634951</a>   </p>
-<p>MAC 地址的通信范围比较小，局限在一个子网里面。<br>例如，从 192.168.0.2/24 访问192.168.0.3/24 是可以用 MAC 地址的。<br>一旦跨子网，即从 192.168.0.2/24 到 192.168.1.2/24，MAC地址就不行了，需要 IP 地址起作用了   </p>
-<h3 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h3><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6905319321321504775">https://juejin.cn/post/6905319321321504775</a></p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">包:  相当于发送请求的网络包</span><br><span class="line"></span><br><span class="line">消息:     应用协议中数据的单位</span><br><span class="line">段:      TCP数据流中的信息</span><br><span class="line">片:      IP中数据单位</span><br><span class="line">帧:      数据链路层中包的单位</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ip/" rel="tag">ip</a></li></ul>
 
     </footer>
   </div>
