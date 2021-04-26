@@ -142,7 +142,8 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903859396050957">“Sed” 高级功能</a><br>sed中命令当前处理的行，存放在<code>pattern space</code><br>还有一个全程无感的<code>hold space</code></p>
+  <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903859396050957">“Sed” 高级功能</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sqbk/p/8335047.html">sed命令n，N，d，D，p，P，h，H，g，G，x解析</a></p>
+<p>sed中命令当前处理的行，存放在<code>pattern space</code><br>还有一个全程无感的寄存器<code>hold space</code><br>sed有默认输出，即处理到某一行时，先原样输出改行内容，可通过<code>-n</code>取消</p>
 <table>
 <thead>
 <tr>
@@ -151,7 +152,8 @@
 <th>PatternSpace</th>
 <th>operate</th>
 <th>HoldSpace</th>
-<th></th>
+<th>cmd</th>
+<th>解释</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -160,7 +162,8 @@
 <td>$ \bigotimes $</td>
 <td>$\Leftrightarrow $</td>
 <td>$\bigodot  $</td>
-<td>x: 交换</td>
+<td><code>x</code></td>
+<td>交换当前和寄存器的数据</td>
 </tr>
 <tr>
 <td></td>
@@ -168,7 +171,8 @@
 <td>$ \bigotimes $</td>
 <td>$ \Rightarrow $</td>
 <td>$ \bigodot $</td>
-<td>h: 复制</td>
+<td><code>h</code>old</td>
+<td>持有当前数据到寄存器</td>
 </tr>
 <tr>
 <td></td>
@@ -176,7 +180,8 @@
 <td>$ \bigotimes $</td>
 <td>$ \Rightarrow $</td>
 <td>$ \bigodot Tail $</td>
-<td>H: 追加</td>
+<td><code>H</code>old</td>
+<td>持有当前数据追加到寄存器</td>
 </tr>
 <tr>
 <td></td>
@@ -184,7 +189,8 @@
 <td>$ \bigotimes $</td>
 <td>$ \Leftarrow $</td>
 <td>$ \bigodot $</td>
-<td>g: 复制</td>
+<td><code>g</code>et</td>
+<td>获取寄存器数据到当前</td>
 </tr>
 <tr>
 <td></td>
@@ -192,7 +198,8 @@
 <td>$ \bigotimes Tail $</td>
 <td>$ \Leftarrow $</td>
 <td>$ \bigodot $</td>
-<td>G: 追加</td>
+<td><code>G</code>et</td>
+<td>获取寄存器数追加据到当前</td>
 </tr>
 <tr>
 <td>$ \bigoplus $</td>
@@ -200,7 +207,8 @@
 <td>$ \bigotimes  $</td>
 <td></td>
 <td></td>
-<td>n: 复制</td>
+<td><code>n</code>ext</td>
+<td>下一条数据到当前,相当于跳过当前步</td>
 </tr>
 <tr>
 <td>$ \bigoplus $</td>
@@ -208,7 +216,8 @@
 <td>$ \bigotimes Tail  $</td>
 <td></td>
 <td></td>
-<td>N: 追加</td>
+<td><code>N</code>ext</td>
+<td>下一条数据追加到当前,相当于两步作一步</td>
 </tr>
 <tr>
 <td></td>
@@ -216,7 +225,8 @@
 <td>$ \bigotimes $</td>
 <td></td>
 <td></td>
-<td>d: 清空</td>
+<td><code>d</code>elete</td>
+<td>删除当前数据,立即进入下一步</td>
 </tr>
 <tr>
 <td></td>
@@ -224,7 +234,8 @@
 <td>$ \bigotimes Head  $</td>
 <td></td>
 <td></td>
-<td>D: 删除</td>
+<td><code>D</code>elete</td>
+<td>删除当前头部数据</td>
 </tr>
 <tr>
 <td></td>
@@ -232,7 +243,8 @@
 <td>$ \bigotimes  $</td>
 <td></td>
 <td></td>
-<td>p: 打印</td>
+<td><code>p</code>rint</td>
+<td>打印当前数据,追加到默认输出后</td>
 </tr>
 <tr>
 <td></td>
@@ -240,9 +252,16 @@
 <td>$ \bigotimes Head  $</td>
 <td></td>
 <td></td>
-<td>P: 打印</td>
+<td><code>P</code>rint</td>
+<td>打印当前头部数据,追加到默认输出前</td>
 </tr>
 </tbody></table>
+<p>test.txt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">zero</span><br><span class="line">one</span><br><span class="line">two</span><br><span class="line">three</span><br><span class="line">four</span><br><span class="line">five</span><br><span class="line">six</span><br><span class="line">seven</span><br><span class="line">eight</span><br><span class="line">nine</span><br><span class="line">ten</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> gsed <span class="string">&#x27;p&#x27;</span> test.txt</span></span><br><span class="line">zero</span><br><span class="line">zero</span><br><span class="line">one</span><br><span class="line">one</span><br><span class="line">two</span><br><span class="line">two</span><br><span class="line">three</span><br><span class="line">three</span><br><span class="line">four</span><br><span class="line">four</span><br><span class="line">five</span><br><span class="line">five</span><br><span class="line">six</span><br><span class="line">six</span><br><span class="line">seven</span><br><span class="line">seven</span><br><span class="line">eight</span><br><span class="line">eight</span><br><span class="line">nine</span><br><span class="line">nine</span><br><span class="line">ten</span><br><span class="line">ten</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> gsed -n <span class="string">&#x27;p&#x27;</span> test.txt</span></span><br><span class="line">zero</span><br><span class="line">one</span><br><span class="line">two</span><br><span class="line">three</span><br><span class="line">four</span><br><span class="line">five</span><br><span class="line">six</span><br><span class="line">seven</span><br><span class="line">eight</span><br><span class="line">nine</span><br><span class="line">ten</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> gsed <span class="string">&#x27;n;p&#x27;</span> test.txt</span></span><br><span class="line">zero</span><br><span class="line">one</span><br><span class="line">one</span><br><span class="line">two</span><br><span class="line">three</span><br><span class="line">three</span><br><span class="line">four</span><br><span class="line">five</span><br><span class="line">five</span><br><span class="line">six</span><br><span class="line">seven</span><br><span class="line">seven</span><br><span class="line">eight</span><br><span class="line">nine</span><br><span class="line">nine</span><br><span class="line">ten</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> gsed -n <span class="string">&#x27;n;p&#x27;</span> test.txt</span></span><br><span class="line">one</span><br><span class="line">three</span><br><span class="line">five</span><br><span class="line">seven</span><br><span class="line">nine</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">输出最后一行</span></span><br><span class="line">sed &#x27;N;D&#x27; file</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">输出文件中最后两行</span></span><br><span class="line">sed &#x27;$!N; $!D&#x27; file</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">删除文件中最后两行</span></span><br><span class="line">sed &#x27;N; $!P;$!D;$d&#x27; file</span><br></pre></td></tr></table></figure>

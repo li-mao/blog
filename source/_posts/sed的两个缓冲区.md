@@ -4,22 +4,110 @@ date: 2021-04-08 15:58:07
 tags:
 ---
 ["Sed" 高级功能](https://juejin.cn/post/6844903859396050957)   
-sed中命令当前处理的行，存放在`pattern space`
-还有一个全程无感的`hold space`
+[sed命令n，N，d，D，p，P，h，H，g，G，x解析](https://www.cnblogs.com/sqbk/p/8335047.html)
 
-| NextLine | operate | PatternSpace | operate | HoldSpace | |
-| -------- | ---- | ------- | ---- | ----- | ---- |
-| | | $ \bigotimes $ | $\Leftrightarrow $ | $\bigodot  $ | x: 交换
-| | | $ \bigotimes $ | $ \Rightarrow $ | $ \bigodot $ | h: 复制
-| | | $ \bigotimes $ | $ \Rightarrow $ | $ \bigodot Tail $ | H: 追加
-| | | $ \bigotimes $ | $ \Leftarrow $ | $ \bigodot $ | g: 复制
-| | | $ \bigotimes Tail $ | $ \Leftarrow $ | $ \bigodot $ | G: 追加
-| $ \bigoplus $ | $ \Rightarrow $ | $ \bigotimes  $ | | | n: 复制
-| $ \bigoplus $ | $ \Rightarrow $ | $ \bigotimes Tail  $ | | | N: 追加
-| | $ Clear $ | $ \bigotimes $ | | | d: 清空
-| | $ Clear $ | $ \bigotimes Head  $ | | | D: 删除
-| | $ Print $ | $ \bigotimes  $ | | | p: 打印
-| | $ Print $ | $ \bigotimes Head  $ | | | P: 打印
+sed中命令当前处理的行，存放在`pattern space`
+还有一个全程无感的寄存器`hold space`     
+sed有默认输出，即处理到某一行时，先原样输出改行内容，可通过`-n`取消
+
+| NextLine | operate | PatternSpace | operate | HoldSpace | cmd|解释|
+| -------- | ---- | ------- | ---- | ----- | ---- | ---- |
+| | | $ \bigotimes $ | $\Leftrightarrow $ | $\bigodot  $ | `x`| 交换当前和寄存器的数据
+| | | $ \bigotimes $ | $ \Rightarrow $ | $ \bigodot $ | `h`old| 持有当前数据到寄存器
+| | | $ \bigotimes $ | $ \Rightarrow $ | $ \bigodot Tail $ | `H`old| 持有当前数据追加到寄存器
+| | | $ \bigotimes $ | $ \Leftarrow $ | $ \bigodot $ | `g`et| 获取寄存器数据到当前
+| | | $ \bigotimes Tail $ | $ \Leftarrow $ | $ \bigodot $ | `G`et| 获取寄存器数追加据到当前
+| $ \bigoplus $ | $ \Rightarrow $ | $ \bigotimes  $ | | | `n`ext| 下一条数据到当前,相当于跳过当前步
+| $ \bigoplus $ | $ \Rightarrow $ | $ \bigotimes Tail  $ | | | `N`ext| 下一条数据追加到当前,相当于两步作一步
+| | $ Clear $ | $ \bigotimes $ | | | `d`elete| 删除当前数据,不被默认输出,立即进入下一步
+| | $ Clear $ | $ \bigotimes Head  $ | | | `D`elete| 删除当前头部数据,不被默认输出,其他当前数据保留到下一步
+| | $ Print $ | $ \bigotimes  $ | | | `p`rint| 打印当前数据,追加到默认输出后
+| | $ Print $ | $ \bigotimes Head  $ | | | `P`rint| 打印当前头部数据,追加到默认输出前
+
+test.txt
+```txet
+zero
+one
+two
+three
+four
+five
+six
+seven
+eight
+nine
+ten
+```
+
+```shell
+% gsed 'p' test.txt
+zero
+zero
+one
+one
+two
+two
+three
+three
+four
+four
+five
+five
+six
+six
+seven
+seven
+eight
+eight
+nine
+nine
+ten
+ten
+```
+
+```shell
+% gsed -n 'p' test.txt
+zero
+one
+two
+three
+four
+five
+six
+seven
+eight
+nine
+ten
+```
+
+```shell
+% gsed 'n;p' test.txt 
+zero  # 当前行被默认输出
+one   # 下一行也被默认输出
+one   # 这个才是p命令输出的
+two
+three
+three
+four
+five
+five
+six
+seven
+seven
+eight
+nine
+nine
+ten
+```
+
+```shell
+% gsed -n 'n;p' test.txt
+one   # 仅有p命令的输出
+three
+five
+seven
+nine
+```
 
 ```shell
 #输出最后一行
