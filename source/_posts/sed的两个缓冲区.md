@@ -5,6 +5,7 @@ tags:
 ---
 ["Sed" 高级功能](https://juejin.cn/post/6844903859396050957)   
 [sed命令n，N，d，D，p，P，h，H，g，G，x解析](https://www.cnblogs.com/sqbk/p/8335047.html)
+[SED 简明教程](https://coolshell.cn/articles/9104.html)
 
 sed中命令当前处理的行，存放在`pattern space`
 还有一个全程无感的寄存器`hold space`     
@@ -31,12 +32,6 @@ one
 two
 three
 four
-five
-six
-seven
-eight
-nine
-ten
 ```
 
 ```shell
@@ -53,16 +48,6 @@ four
 four
 five
 five
-six
-six
-seven
-seven
-eight
-eight
-nine
-nine
-ten
-ten
 ```
 
 ```shell
@@ -73,11 +58,6 @@ two
 three
 four
 five
-six
-seven
-eight
-nine
-ten
 ```
 
 ```shell
@@ -91,13 +71,6 @@ three
 four
 five
 five
-six
-seven
-seven
-eight
-nine
-nine
-ten
 ```
 
 ```shell
@@ -105,8 +78,6 @@ ten
 one   # 仅有p命令的输出
 three
 five
-seven
-nine
 ```
 
 ```shell
