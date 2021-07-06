@@ -56,6 +56,54 @@
     
     
     <article
+  id="post-不一样的栈面试题"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/08/%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%A0%88%E9%9D%A2%E8%AF%95%E9%A2%98/"
+    >不一样的栈面试题</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/08/%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E6%A0%88%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-date">
+  <time datetime="2021-03-08T02:46:59.000Z" itemprop="datePublished">2021-03-08</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>群里有人发过一页面试题，其中第二道面试题比较有意思。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">给定一个递增的整数数组，请编写一个函数，查找出该数组中不重复的元素，并给出复杂度。</span><br><span class="line">例如：[1,1,2,2,3,4,5,5,5]，输出为[3,4]，不限编程语言。</span><br></pre></td></tr></table></figure>
+<p>一般以为用栈只能消除偶数的重复元素，但真的是这样吗？<br>这道题是有序数组，还是可以用栈解决了这个问题。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">arr,i=<span class="number">0</span></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>( i &lt; (arr.length - <span class="number">1</span>) )&#123;</span><br><span class="line">    <span class="comment">//没到末尾</span></span><br><span class="line">    <span class="keyword">const</span> next = i + <span class="number">1</span></span><br><span class="line">    <span class="keyword">const</span> before = i - <span class="number">1</span></span><br><span class="line">    <span class="keyword">const</span> stack = fun(arr,next);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(arr[i] === stack[<span class="number">0</span>])&#123;</span><br><span class="line">      <span class="comment">//本元素和返回栈顶相同</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">/***</span></span><br><span class="line"><span class="comment">       * 开始消除逻辑</span></span><br><span class="line"><span class="comment">       * 我是递归到最末尾才开始往前判断的。</span></span><br><span class="line"><span class="comment">       * 入栈 还是普通的判断，原数组当前元素和栈顶不同就入栈。</span></span><br><span class="line"><span class="comment">       * </span></span><br><span class="line"><span class="comment">       * 出栈 是原数组当前元素和栈顶元素相同时，</span></span><br><span class="line"><span class="comment">       * 还要判断原数组前一位元素是否和当前元素相同：（这是精华）</span></span><br><span class="line"><span class="comment">       *    相同: 说明超过2个重复元素，直接返回栈 </span></span><br><span class="line"><span class="comment">       *    不同: 说明只剩2个重复元素，消除栈顶元素，返回栈</span></span><br><span class="line"><span class="comment">       */</span></span><br><span class="line">      <span class="keyword">if</span>(i === <span class="number">0</span>)&#123;</span><br><span class="line">        stack.shift()</span><br><span class="line">        <span class="keyword">return</span> stack;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span>( arr[i] === arr[before] )&#123;</span><br><span class="line">        <span class="keyword">return</span> stack;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        stack.shift()</span><br><span class="line">        <span class="keyword">return</span> stack;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">/**</span></span><br><span class="line"><span class="comment">       * 结束消除逻辑</span></span><br><span class="line"><span class="comment">       */</span></span><br><span class="line">      </span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="comment">//本元素和返回栈顶不同</span></span><br><span class="line">      stack.unshift(arr[i])</span><br><span class="line">      <span class="keyword">return</span> stack</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//到了末尾</span></span><br><span class="line">    <span class="keyword">return</span> [ arr[i] ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(fun(arr))</span><br></pre></td></tr></table></figure> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-电磁切割偶感"
   class="article article-type-post"
   itemscope
@@ -508,59 +556,6 @@
     
     <footer class="article-footer">
        
-    </footer>
-  </div>
-
-   
-    
-</article>
-
-    
-    <article
-  id="post-最大公约数的人话描述"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/02/19/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E7%9A%84%E4%BA%BA%E8%AF%9D%E6%8F%8F%E8%BF%B0/"
-    >最大公约数的人话描述</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/02/19/%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E7%9A%84%E4%BA%BA%E8%AF%9D%E6%8F%8F%E8%BF%B0/" class="article-date">
-  <time datetime="2021-02-19T09:29:38.000Z" itemprop="datePublished">2021-02-19</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>终于看明白这玩意到底是什么意思了，赶紧写下来。</p>
-<p>L0 和 L1 都是非负整数，<br>L0 为较大数，L1 为较小数，<br>两者的 <code>最大公约数</code> 。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L0  除以  L1  的余数   L2</span><br><span class="line">L1  除以  L2  的余数   L3</span><br><span class="line">直到 Ln 等于 0，则 L(n-1) 为最大公约数。</span><br></pre></td></tr></table></figure>
-<p>5 和 4 的最大公约数   </p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">5 除以 4 的余数 1  </span><br><span class="line">4 除以 1 的余数 0  </span><br><span class="line">由此可知 1 是最大公约数。</span><br></pre></td></tr></table></figure>
-<p>4 和 2 的最大公约数   </p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">4 除以 2 的余数 0   </span><br><span class="line">由此可知 2 是最大公约数</span><br></pre></td></tr></table></figure> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B9%B1%E8%AF%AD/" rel="tag">乱语</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
-
     </footer>
   </div>
 
