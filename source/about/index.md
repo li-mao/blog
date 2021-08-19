@@ -3,7 +3,7 @@ title: about
 date: 2020-10-17 12:15:58
 ---
 #### MacOS Big Sur   
- 版本 11.2.3
+ 版本 11.5.2
 
 #### MacBook Pro (13-inch, 2019, Four Thunderbolt 3 ports)  
 处理器 2.4 GHz 四核Intel Core i5  
