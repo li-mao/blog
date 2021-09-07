@@ -10,7 +10,7 @@ p = new Promise((resolve,reject)=>{
   console.log("do something...");
   const num = Math.random();
   if( num > 0.5 ){
-    resole(num);
+    resolve(num);
   }else{
     reject(num); 
   }
@@ -24,16 +24,16 @@ p.then((data)=>{
 ```
 构造参数，伪代码
 ```javascript
-("后续的匿名函数resolve,目前仅作占位,传给它的参数,被认为是成功后的数据结果","后续的匿名函数reject,目前仅作占位,传给它的参数,被认为是失败后的数据结果") => {
+("Promise对象的resolve方法,保存成功值","Promise对象的reject方法,保存失败值") => {
   "to do something..." 
   if("成功后"){
-    resolve("成功后的数据");
+    resolve("成功值");
   }else{
-    reject("失败后的数据");
+    reject("失败值");
   }
 }
 ```
 then方法的参数，伪代码
 ```javascript
-then("真正的匿名函数resolve,(data)=>{ }","真正的匿名函数reject,(data)=>{ }");
+then("匿名函数,处理成功值,(data)=>{ }","匿名函数,处理失败值,(data)=>{ }");
 ```
