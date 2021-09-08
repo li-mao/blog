@@ -3,3 +3,6 @@ node_modules
 package-lock.json
 themes
 yarn.lock
+db.json
+public
+scaffolds
